@@ -1,9 +1,9 @@
-import { HttpClient} from '@angular/common/http';
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+
+import { Component, OnInit} from '@angular/core';
 import { UserFormRegistration } from 'src/app/interfaces/user-form-regstration';
-import { MatDialog } from '@angular/material/dialog'
 import { Router} from '@angular/router';
 import { RegistrationService } from 'src/app/services/registration.service';
+import { MatDialog } from '@angular/material/dialog';
 import { RegisterInfoComponent } from '../register-info/register-info.component';
 
 @Component({
@@ -24,28 +24,34 @@ export class RegistrationComponent implements OnInit {
 
   message='';
 
-  userVerified = false;
+  startApiResponse = false;
 
-  constructor(private http: HttpClient, public dialog: MatDialog,
-              private router: Router, private regService: RegistrationService) { }
+  constructor(private router: Router, private regService: RegistrationService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
   registerUser(): void {
+    this.startApiResponse = true;
     this.regService.registerUser(this.user, this.repeat, 
-      () => {this.userVerified = true},
-      () => {this.message = this.regService.getMessage()});
-    if(this.userVerified) {this.openDialog(this.user);}
+                                () => {this.startApiResponse = false; this.showInfo(this.user);}, 
+                                () => {this.startApiResponse = false; this.message = this.regService.getMessage()});
+    
   }
-  openDialog(user: UserFormRegistration) {
-
+  showInfo(user: UserFormRegistration): void {
     const dialogRef = this.dialog.open(RegisterInfoComponent, {
-      data: user,
+      data: user
     });
-    return dialogRef.afterClosed().subscribe(
+    dialogRef.afterOpened().subscribe(
       () => {
-        this.router.navigate(['login']);
+        setTimeout(() => 
+        {dialogRef.close(); this.router.navigate(['login'])},
+        18000
+        )
       }
+    );
+    dialogRef.afterClosed().subscribe(
+      () => 
+      {this.router.navigate(['login'])}
     );
   }
 }

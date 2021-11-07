@@ -16,6 +16,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { RegisterInfoComponent } from './components/register-info/register-info.component';
 import { RegistrationService } from './services/registration.service';
 import { UrlService } from './services/url.service';
+import { InfoComponent } from './components/info/info.component';
+import { ActivateComponent } from './components/activate/activate.component';
 
 export const ROUTES = [
   {
@@ -34,7 +36,9 @@ export const ROUTES = [
     HeaderComponent,
     LoginComponent,
     RegistrationComponent,
-    RegisterInfoComponent
+    RegisterInfoComponent,
+    InfoComponent,
+    ActivateComponent
   ],
   imports: [
     BrowserModule,

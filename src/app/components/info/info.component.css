@@ -1,22 +1,23 @@
-::ng-deep  .mat-dialog-container {
-    background: darkslategray !important;
-    padding: 5% !important;
-    overflow: hidden !important;
+::ng-deep  .mat-card {
+    background: darkslategray;
+    padding: 5%;
+    overflow: hidden;
     color: lightslategrey;
-    max-width: 70%;
-    margin-left: auto;
+    width: 70%;
     margin-right: auto;
+    margin-left: auto;
     
   }
-.mat-dialog-content {
+.mat-card-content {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: darkslategray;
 }
-.mat-dialog-title {
+.header {
     width: 100%;
     text-align: center;
-    color: lightslategray;
-    margin-left: auto;
-    margin-right: auto;
+    margin-bottom: 2rem;
+}
+.mat-card-title {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 

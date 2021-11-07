@@ -1,7 +1,7 @@
 import { HttpClient} from '@angular/common/http';
 import { Component, DoCheck, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from './interfaces/user';
+import { User } from '../app/interfaces/user';
 import { UrlService } from './services/url.service';
 import { AuthService } from './services/auth.service';
 

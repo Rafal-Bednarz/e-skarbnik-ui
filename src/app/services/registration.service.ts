@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, Output, EventEmitter} from '@angular/core';
+import { User } from '../interfaces/user';
 import { UserFormRegistration } from '../interfaces/user-form-regstration';
 import { UrlService } from './url.service';
 
@@ -17,8 +18,8 @@ export class RegistrationService {
       this.message = 'Hasła nie są jednakowe';
       return error && error();
     } else {
-      this.http.post<string>(UrlService.getApi() + 'registration', user, {}).subscribe(
-        () => {
+      this.http.post<User>(UrlService.getApi() + 'registration', user, {}).subscribe(
+        (user: User) => {
           return callback && callback();
         },
         (err: HttpErrorResponse) => {
