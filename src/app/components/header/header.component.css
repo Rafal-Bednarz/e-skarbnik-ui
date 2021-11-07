@@ -1,0 +1,23 @@
+
+.navbar {
+    flex: 1 1 auto;
+    font-family: 'Courier New', Courier, monospace;
+    color: #4E342E;
+}
+.account {
+    transform: scale(2);
+}
+.headerButton {
+    margin-right: 1 rem;
+}
+.mat-toolbar {
+    height: 10%;
+}
+.mat-card {
+    background-color: darkslategray;
+}
+
+::ng-deep .custom-menu {
+   
+   background-color: darkslategray;
+}

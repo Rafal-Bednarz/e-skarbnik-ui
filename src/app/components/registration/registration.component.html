@@ -1,0 +1,36 @@
+<div class="container">
+    <mat-card>
+            <mat-card-title class="title"> Rejestracja</mat-card-title>
+       <div class="form">
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Nazwa użytkownika</mat-label>
+                <input matInput required [(ngModel)]= "user.username">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="prosty@adres.com" required [(ngModel)]= "user.email">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Hasło</mat-label>
+                <input matInput required [(ngModel)]= "user.password">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Powtórz hasło</mat-label>
+                <input matInput required [(ngModel)]= "repeat">
+            </mat-form-field>
+        </div>
+       </div>
+       <div class="error">
+        <mat-error>{{message ? message : ""}}</mat-error>
+    </div>
+        <button mat-raised-button color="accent" (click)="registerUser()">Utwórz konto</button><br><br>
+        <a mat-stroked-button color="accent" routerLink="/login">Masz już konto? Zaloguj się.</a>
+    </mat-card>
+</div>

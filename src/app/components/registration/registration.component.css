@@ -1,0 +1,32 @@
+.container {
+    min-height: min-content;
+    padding-top: 15%;
+    padding-bottom: 15%;
+    background: #00796B;
+}
+.mat-card {
+    background: rgb(63, 170, 170);
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    max-width: min-content;
+    max-height: min-content;
+}
+.form {
+    text-align: left;
+    
+    max-width: min-content;
+    max-height: min-content;
+}
+.mat-form-field {
+    width: 100%;
+}
+.error {
+    font-size: smaller;
+    margin-bottom: 1rem;
+}
+.title {
+    margin-bottom: 2rem;
+    color: #4E342E;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
