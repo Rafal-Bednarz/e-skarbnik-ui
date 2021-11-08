@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input'
 import { MatTooltipModule } from '@angular/material/tooltip'
 import { MatDialogModule } from '@angular/material/dialog'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
+import { MatDividerModule } from '@angular/material/divider';
 
 const MaterialComponents = [
   MatToolbarModule,
@@ -26,7 +27,8 @@ const MaterialComponents = [
   MatInputModule,
   MatTooltipModule,
   MatDialogModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatDividerModule
 ]
 
 @NgModule({

@@ -28,6 +28,7 @@
 .describe {
     color: lightslategray;
 }
-.email {
+.user {
     font-style: italic;
+    color: tomato;
 }

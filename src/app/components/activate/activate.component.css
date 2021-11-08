@@ -1,0 +1,37 @@
+.container {
+    min-height: 80%;
+    padding-top: 8%;
+    background-color: #00796B;
+}
+::ng-deep  .mat-card {
+    background: darkslategray;
+    padding: 5%;
+    overflow: hidden;
+    color: lightslategrey;
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+    
+  }
+.mat-card-content {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: darkslategray;
+}
+.header {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.mat-card-title {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.ok {
+    margin-top: 2rem;
+    width: 100%;
+    text-align: right;
+}
+.user {
+    color: tomato;
+    font-style: italic;
+}

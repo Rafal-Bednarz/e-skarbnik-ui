@@ -21,10 +21,6 @@ export class AppComponent implements OnInit, DoCheck, OnDestroy {
   }
   
   ngOnInit(): void { 
-    
-    if(!this.authenticated()){
-      this.router.navigate(['login']);
-    }
   }
   ngDoCheck():void {
     this.refreshUser()

@@ -13,7 +13,7 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $eskarbnik-ui-primary: mat.define-palette(mat.$teal-palette, 700);
-$eskarbnik-ui-accent: mat.define-palette(mat.$brown-palette, 800);
+$eskarbnik-ui-accent: mat.define-palette(mat.$indigo-palette, 900);
 
 // The warn palette is optional (defaults to red).
 $eskarbnik-ui-warn: mat.define-palette(mat.$red-palette, 900);

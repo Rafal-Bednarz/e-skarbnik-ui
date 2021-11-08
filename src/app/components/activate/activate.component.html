@@ -1,1 +1,16 @@
-<p>activate works!</p>
+<div class="container">
+    <mat-card class="mat-typography">
+        <div class="header">
+            <mat-card-title>Witaj <span class="user">{{username}}</span>!</mat-card-title>
+        </div>
+            <mat-card-content>
+                <p>Twoje konto zostało aktywowane!</p>
+                <p>Możesz już się zalogować i w pełni korzystać z konta.</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <div class="ok">
+                    <a mat-stroked-button color="accent" routerLink="/login">zaloguj <mat-icon>login</mat-icon></a>
+                </div>
+            </mat-card-actions>
+    </mat-card>
+</div>

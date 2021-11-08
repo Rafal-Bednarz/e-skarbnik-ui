@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { HeaderComponent } from './components/header/header.component';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule} from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -16,7 +16,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { RegisterInfoComponent } from './components/register-info/register-info.component';
 import { RegistrationService } from './services/registration.service';
 import { UrlService } from './services/url.service';
-import { InfoComponent } from './components/info/info.component';
 import { ActivateComponent } from './components/activate/activate.component';
 
 export const ROUTES = [
@@ -26,7 +25,11 @@ export const ROUTES = [
   },
   {
     path: 'registration',
-    component: RegistrationComponent,
+    component: RegistrationComponent, 
+  },
+  {
+    path: 'registration/:username/:registrationToken',
+    component: ActivateComponent
   }
 ]
 
@@ -37,7 +40,6 @@ export const ROUTES = [
     LoginComponent,
     RegistrationComponent,
     RegisterInfoComponent,
-    InfoComponent,
     ActivateComponent
   ],
   imports: [

@@ -1,7 +1,7 @@
 .container {
     min-height: 80%;
-    padding-top: 15%;
-    padding-bottom: 15%;
+    padding-top: 8%;
+    padding-bottom: 5%;
     background: #00796B;
     
 }
@@ -28,7 +28,7 @@
 }
 .title {
     margin-bottom: 2rem;
-    color: #4E342E;
+    color: #1A237E;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .mat-spinner {

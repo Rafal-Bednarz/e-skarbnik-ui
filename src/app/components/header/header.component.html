@@ -2,7 +2,7 @@
     <span class="navbar" routerLink="/"> <mat-icon color="accent">school</mat-icon> Eskarbnik</span>
 
     <button class="headerButton" mat-icon-button>
-        <mat-icon color="accent">email</mat-icon>
+        <mat-icon color="accent">mail_outline</mat-icon>
     </button>   
     <button *ngIf="authenticated()" matTooltip="Profil" class="headerButton" mat-mini-fab color="primary" 
     [matMenuTriggerFor]="menu">
@@ -10,12 +10,13 @@
     </button>
     
 </mat-toolbar>
+<mat-divider></mat-divider>
 <mat-menu class="custom-menu" #menu=matMenu>
   <mat-card>
   <mat-card-header class="header">
     <div mat-card-avatar><mat-icon>account_circle</mat-icon></div>
-    <mat-card-title style="font-size: medium; color: rgb(71, 116, 160);">{{user ? user.username : ""}}</mat-card-title>
-    <mat-card-subtitle style="font-size: medium; color: rgb(80, 109, 138);">{{user ? user.email : ""}}</mat-card-subtitle>
+    <mat-card-title style="font-size: medium; color: #1A237E;">{{user ? user.username : ""}}</mat-card-title>
+    <mat-card-subtitle style="font-size: medium; color: rgb(71, 116, 160);">{{user ? user.email : ""}}</mat-card-subtitle>
   </mat-card-header>
   </mat-card>
   <div mat-menu-item>
