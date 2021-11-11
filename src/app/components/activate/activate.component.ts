@@ -13,6 +13,8 @@ export class ActivateComponent implements OnInit {
   registrationToken = '';
   username = '';
 
+  startApiResponse = false;
+
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
@@ -24,14 +26,12 @@ export class ActivateComponent implements OnInit {
     )
   }
   showInfo() {
+    this.startApiResponse = true;
     this.http.get(UrlService.getApi() + 'registration/' + this.username + '/' + this.registrationToken)
           .subscribe(() => {
-            setTimeout(() => 
-              this.router.navigate(['login']),
-              12000
-            )
           }, error => {
             this.router.navigate(['login']);
     });
+    this.startApiResponse = false;
   }
 }

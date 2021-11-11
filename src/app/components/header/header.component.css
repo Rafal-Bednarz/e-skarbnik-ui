@@ -2,25 +2,23 @@
 .navbar {
     flex: 1 1 auto;
     font-family: 'Courier New', Courier, monospace;
-    color: #1A237E;
+    color: var(--accent);
 }
 .account {
     transform: scale(2);
-}
-.headerButton {
-    margin-right: 1 rem;
+    
 }
 .mat-toolbar {
     height: 10%;
 }
 .mat-card {
-    background-color: darkslategray;
+    background-color: var(--info);
 }
 
 ::ng-deep .custom-menu {
    
-   background-color: darkslategray;
+   background-color: var(--info);
 }
 .mat-divider {
-    background: #1A237E;
+    background: var(--accent);
 }

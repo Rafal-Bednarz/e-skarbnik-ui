@@ -1,13 +1,13 @@
 .container {
     min-height: 80%;
     padding-top: 8%;
-    background-color: #00796B;
+    background-color: var(--primary);
 }
-::ng-deep  .mat-card {
-    background: darkslategray;
+.mat-card {
+    background: var(--info);
     padding: 5%;
     overflow: hidden;
-    color: lightslategrey;
+    color: var(--accent);
     width: 50%;
     margin-right: auto;
     margin-left: auto;
@@ -15,7 +15,7 @@
   }
 .mat-card-content {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background: darkslategray;
+    background: var(--info);
 }
 .header {
     width: 100%;
@@ -34,4 +34,9 @@
 .user {
     color: tomato;
     font-style: italic;
+}
+.mat-spinner {
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
 }

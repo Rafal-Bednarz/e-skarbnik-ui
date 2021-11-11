@@ -28,7 +28,7 @@ const MaterialComponents = [
   MatTooltipModule,
   MatDialogModule,
   MatProgressSpinnerModule,
-  MatDividerModule
+  MatDividerModule,
 ]
 
 @NgModule({

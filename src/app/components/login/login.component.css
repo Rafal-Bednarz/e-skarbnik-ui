@@ -2,10 +2,10 @@
 .container {
     min-height: 80%;
     padding-top: 8%;
-    background-color: #00796B;
+    background-color: var(--primary);
 }
 .mat-card {
-    background: rgb(63, 170, 170);
+    background: var(--accent);
     margin-right: auto;
     margin-left: auto;
     text-align: center;
@@ -26,10 +26,21 @@
     margin-bottom: 1rem;
 }
 .title {
-    color: #1A237E;
+    color: var(--primary);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin-bottom: 2rem;
 }
+.mat-raised-button {
+    color: var(--accent);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
 .mat-stroked-button {
     max-width: min-content;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.mat-spinner {
+    margin-top: 10%;
+    margin-left: auto;
+    margin-bottom: auto;
+    margin-right: auto;
 }

@@ -1,8 +1,8 @@
 ::ng-deep  .mat-dialog-container {
-    background: darkslategray !important;
+    background: var(--info) !important;
     padding: 5% !important;
     overflow: hidden !important;
-    color: lightslategrey;
+    color: var(--accent);
     max-width: 70%;
     margin-left: auto;
     margin-right: auto;
@@ -14,7 +14,7 @@
 .mat-dialog-title {
     width: 100%;
     text-align: center;
-    color: lightslategray;
+    color: var(--accent);
     margin-left: auto;
     margin-right: auto;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -25,10 +25,10 @@
     width: 100%;
     text-align: center;
 }
-.describe {
-    color: lightslategray;
-}
 .user {
     font-style: italic;
     color: tomato;
+}
+.mat-raised-button {
+    color: var(--accent);
 }

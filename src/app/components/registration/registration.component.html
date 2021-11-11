@@ -30,8 +30,8 @@
        <div class="error">
         <mat-error>{{message ? message : ""}}</mat-error>
     </div>
-        <button mat-raised-button color="accent" (click)="registerUser()">Utwórz konto</button><br><br>
-        <a mat-stroked-button color="accent" routerLink="/login">Masz już konto? Zaloguj się.</a>
+        <button mat-raised-button color="primary" (click)="registerUser()">Utwórz konto</button><br><br>
+        <a mat-stroked-button color="primary" routerLink="/login">Masz już konto? Zaloguj się.</a>
     </mat-card>
-    <mat-spinner color="warn" *ngIf="startApiResponse"></mat-spinner>
+    <mat-spinner color="accent" *ngIf="startApiResponse"></mat-spinner>
 </div>

@@ -41,17 +41,9 @@ export class RegistrationComponent implements OnInit {
     const dialogRef = this.dialog.open(RegisterInfoComponent, {
       data: user
     });
-    dialogRef.afterOpened().subscribe(
-      () => {
-        setTimeout(() => 
-        {dialogRef.close(); this.router.navigate(['login'])},
-        18000
-        )
-      }
-    );
     dialogRef.afterClosed().subscribe(
       () => 
-      {this.router.navigate(['login'])}
+        this.router.navigate(['login'])
     );
   }
 }

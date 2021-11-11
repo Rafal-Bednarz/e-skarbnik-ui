@@ -1,5 +1,5 @@
 <div class="container">
-    <mat-card>
+    <mat-card *ngIf="!startApiResponse">
         <mat-card-title class="title">Logowanie</mat-card-title>
             <div class= "form">
                 <div>
@@ -24,9 +24,10 @@
                     {{message ? message : ""}}
                 </mat-error>
             </div>
-            <button mat-raised-button color="accent" (click) = "login()">zaloguj</button><br><br>
-            <a mat-stroked-button color="accent" routerLink="/registration">Nie masz konta? Zarejestruj się.</a>
+            <button mat-raised-button color="primary" (click) = "login()">Zaloguj</button><br><br>
+            <a mat-stroked-button color="primary" routerLink="/registration">Nie masz konta? Zarejestruj się.</a>
     </mat-card>
+    <mat-spinner color="accent" *ngIf="startApiResponse"></mat-spinner>
 </div>
 
 

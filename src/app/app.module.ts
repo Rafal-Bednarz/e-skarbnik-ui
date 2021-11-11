@@ -17,6 +17,8 @@ import { RegisterInfoComponent } from './components/register-info/register-info.
 import { RegistrationService } from './services/registration.service';
 import { UrlService } from './services/url.service';
 import { ActivateComponent } from './components/activate/activate.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { InfoComponent } from './components/info/info.component';
 
 export const ROUTES = [
   {
@@ -30,6 +32,10 @@ export const ROUTES = [
   {
     path: 'registration/:username/:registrationToken',
     component: ActivateComponent
+  },
+  {
+    path: 'contact',
+    component: ContactComponent
   }
 ]
 
@@ -40,7 +46,9 @@ export const ROUTES = [
     LoginComponent,
     RegistrationComponent,
     RegisterInfoComponent,
-    ActivateComponent
+    ActivateComponent,
+    ContactComponent,
+    InfoComponent
   ],
   imports: [
     BrowserModule,

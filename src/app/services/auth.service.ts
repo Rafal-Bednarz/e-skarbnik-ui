@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpHandler, HttpHeaders, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { User } from '../interfaces/user';
 import { UserFormLogin } from '../interfaces/user-form-login';
 import { UrlService } from './url.service';
@@ -49,6 +50,9 @@ export class AuthService {
   }
   public getErrorMessage(): string {
     return this.errorMessage;
+  }
+  public getUser(): Observable<User> {
+      return this.http.get<User>(UrlService.getApi() + 'user');
   }
   refreshSession(): void {
     
