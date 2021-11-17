@@ -21,11 +21,11 @@ export class ActivateComponent implements OnInit {
     let resp = this.route.params.subscribe((params: Params) => {
       this.username = params['username'];
       this.registrationToken = params['registrationToken'];
-      this.showInfo();
+      this.activateUser();
       }
     )
   }
-  showInfo() {
+  activateUser() {
     this.startApiResponse = true;
     this.http.get(UrlService.getApi() + 'registration/' + this.username + '/' + this.registrationToken)
           .subscribe(() => {

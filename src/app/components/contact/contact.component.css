@@ -1,0 +1,60 @@
+.container {
+    min-height: 80%;
+    padding-top: 8%;
+    padding-bottom: 8%;
+    background-color: var(--primary);
+}
+.mainCard {
+    width: 70%;
+    max-height: min-content;
+    margin-left: auto;
+    margin-right: auto;
+    background: var(--secondary);
+}
+.subCard {
+    background: var(--accent);
+    margin-right: auto;
+    margin-left: auto;
+    width: auto;
+    max-height: min-content;
+    margin-bottom: 2rem;
+}
+
+.subject {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 30%;
+    background: var(--accent);
+}
+.title {
+    margin-bottom: 5%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: var(--accent)
+}
+.message {
+    background: var(--accent);
+    width: 100%;
+}
+.area {
+    resize: none;
+    height: 200px;
+}
+.actions {
+    width: 100%;
+    text-align: right;
+}
+.error {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.mat-stroked-button {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.mat-spinner {
+    margin-top: 10%;
+    margin-left: auto;
+    margin-bottom: auto;
+    margin-right: auto;
+}

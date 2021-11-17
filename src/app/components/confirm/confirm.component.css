@@ -3,32 +3,20 @@
     padding: 5% !important;
     overflow: hidden !important;
     color: var(--accent);
-    max-width: 70%;
+    max-width: 80%;
     margin-left: auto;
     margin-right: auto;
-    
-  }
+}
 .mat-dialog-content {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-.mat-dialog-title {
+.action {
+    padding-top: 2rem;
     width: 100%;
-    text-align: center;
-    color: var(--accent);
-    margin-left: auto;
-    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.button {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-.ok {
-    margin-top: 2rem;
-    width: 100%;
-    text-align: center;
-}
-.user {
-    font-style: italic;
-    color: tomato;
-}
-.mat-raised-button {
-    color: var(--accent);
 }

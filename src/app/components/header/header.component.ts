@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { User } from 'src/app/interfaces/user';
 import { UrlService } from 'src/app/services/url.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit {
 
   @Input("user")
   user!: User;
+  @Output('delete') delete: EventEmitter<null> = new EventEmitter();
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
@@ -24,5 +25,8 @@ export class HeaderComponent implements OnInit {
   }
   authenticated(): string | null {
     return this.authService.getAuthenticated();
+  }
+  deleteUser(): void {
+    this.delete.emit();
   }
 }

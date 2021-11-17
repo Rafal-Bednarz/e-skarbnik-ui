@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { User } from '../interfaces/user';
 import { UserFormLogin } from '../interfaces/user-form-login';
 import { UrlService } from './url.service';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -40,13 +41,13 @@ export class AuthService {
       );
   }
   public setAuthenticated(value: string) {
-    sessionStorage.setItem('authenticated', value);
+    window.sessionStorage.setItem('authenticated', value);
   }
   public getAuthenticated() {
-    return sessionStorage.getItem('authenticated');
+    return window.sessionStorage.getItem('authenticated');
   }
   public clearAuthenticated() {
-    sessionStorage.removeItem('authenticated');
+    window.sessionStorage.removeItem('authenticated');
   }
   public getErrorMessage(): string {
     return this.errorMessage;

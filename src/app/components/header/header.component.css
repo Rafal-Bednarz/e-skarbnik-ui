@@ -12,12 +12,12 @@
     height: 10%;
 }
 .mat-card {
-    background-color: var(--info);
+    background-color: var(--secondary);
 }
 
 ::ng-deep .custom-menu {
    
-   background-color: var(--info);
+   background-color: var(--secondary);
 }
 .mat-divider {
     background: var(--accent);

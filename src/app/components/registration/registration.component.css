@@ -14,13 +14,9 @@
     max-height: min-content;
 }
 .form {
-    text-align: left;
     min-height: min-content;
-    max-width: min-content;
-    color: black;
-}
-.mat-form-field {
     width: 100%;
+    color: black;
 }
 .error {
     font-size: smaller;

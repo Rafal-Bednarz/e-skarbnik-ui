@@ -1,0 +1,34 @@
+<div class="container">
+    <mat-card class="mainCard" *ngIf="!startApiRequest">
+        <mat-card-title class="title">Napisz do nas</mat-card-title>
+        <mat-card class="subCard">
+        <div>
+            <div>
+                <mat-form-field appearance="outline" class="subject">
+                    <mat-label>Wprowadź temat</mat-label>
+                    <input matInput type="text" placeholder="wprowadź temat wiadomości" 
+                                required [(ngModel)]="subject">
+                </mat-form-field>
+            </div> 
+        </div>
+        </mat-card>
+        <mat-card class="subCard">
+        <div>
+            <mat-form-field appearance="outline" class="message">
+                <mat-label>Napisz wiadomość</mat-label>
+                <textarea class="area" matInput type="text" placeholder="napisz treść wiadomości" 
+                            required [(ngModel)]="message"></textarea>
+            </mat-form-field>
+        </div>
+        <div class="error">
+        <mat-error *ngIf="error">
+            {{error}}
+        </mat-error> 
+        </div>
+        </mat-card>
+        <div class="actions">
+            <button mat-stroked-button color="accent" (click)="send()">Wyślij <mat-icon>send</mat-icon></button>
+        </div>
+    </mat-card>  
+    <mat-spinner *ngIf="startApiRequest" color="accent"></mat-spinner>
+</div>

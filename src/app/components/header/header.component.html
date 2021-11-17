@@ -1,5 +1,5 @@
 <mat-toolbar color=primary>
-    <span class="navbar" routerLink="/"> <mat-icon color="accent">school</mat-icon> Eskarbnik</span>
+    <span class="navbar" > <button mat-icon-button matTooltip="Strona główna"><mat-icon color="accent" routerLink="/">school</mat-icon></button> Eskarbnik</span>
 
     <button mat-icon-button>
         <mat-icon color="accent" matTooltip="Napisz do nas" routerLink="/contact">mail_outline</mat-icon>
@@ -19,12 +19,12 @@
     <mat-card-subtitle style="font-size: medium; color: var(--accent);">{{user ? user.email : ""}}</mat-card-subtitle>
   </mat-card-header>
   </mat-card>
-  <div mat-menu-item>
+  <div mat-menu-item  routerLink="/login" (click)="logout()">
       <mat-icon mat-menu-icon>logout</mat-icon>
-      <button mat-button routerLink="/login" (click)="logout()">wyloguj</button>
+      wyloguj
   </div>
-  <div mat-menu-item>
+  <div mat-menu-item (click)="deleteUser()">
      <mat-icon mat-menu-icon>settings</mat-icon>
-     <button mat-button>usuń konto</button>
+     usuń konto
   </div>    
 </mat-menu>

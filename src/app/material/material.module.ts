@@ -13,6 +13,9 @@ import { MatTooltipModule } from '@angular/material/tooltip'
 import { MatDialogModule } from '@angular/material/dialog'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { MatDividerModule } from '@angular/material/divider';
+import { MatTableModule } from '@angular/material/table'
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 const MaterialComponents = [
   MatToolbarModule,
@@ -29,6 +32,10 @@ const MaterialComponents = [
   MatDialogModule,
   MatProgressSpinnerModule,
   MatDividerModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatSortModule
+
 ]
 
 @NgModule({

@@ -24,17 +24,17 @@ export class RegistrationComponent implements OnInit {
 
   message='';
 
-  startApiResponse = false;
+  startApiRequest = false;
 
   constructor(private router: Router, private regService: RegistrationService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
   registerUser(): void {
-    this.startApiResponse = true;
+    this.startApiRequest = true;
     this.regService.registerUser(this.user, this.repeat, 
-                                () => {this.startApiResponse = false; this.showInfo(this.user);}, 
-                                () => {this.startApiResponse = false; this.message = this.regService.getMessage()});
+                                () => { this.startApiRequest = false; this.showInfo(this.user);}, 
+                                () => { this.startApiRequest = false; this.message = this.regService.getMessage()});
     
   }
   showInfo(user: UserFormRegistration): void {

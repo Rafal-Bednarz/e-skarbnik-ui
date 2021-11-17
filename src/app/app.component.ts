@@ -1,49 +1,32 @@
-import { HttpClient} from '@angular/common/http';
+
 import { Component, DoCheck, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../app/interfaces/user';
-import { UrlService } from './services/url.service';
 import { AuthService } from './services/auth.service';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, DoCheck, OnDestroy {
-
-  refresh = true;
+export class AppComponent implements OnInit {
 
   user!: User;
 
-  constructor(private router: Router, private authService: AuthService,
-     private http: HttpClient) {
+  constructor(private router: Router, private userService: UserService, private auth: AuthService) {
   }
   
-  ngOnInit(): void { 
+  ngOnInit(): void {
+    this.getUser();
   }
-  ngDoCheck():void {
-    this.refreshUser()
-  }
-  ngOnDestroy():void {
-  }
-  authenticated(): string | null {
-    return this.authService.getAuthenticated();
-  }
-  onRouterActivated(event: any) {
-    this.refresh = true;
-  }
-  refreshUser() {
-    if(this.authenticated() && this.refresh) {
-    
-    this.http.get<User>(UrlService.getApi() + 'user').subscribe(
-      resp => {
-        this.user = resp;
-      }, error => {
-        // dodaj obsługę błędu
-      });
-      this.refresh = false;
+  getUser(): void {
+    if(this.auth.getAuthenticated()) {
+      this.userService.refreshUser(() => this.user = this.userService.getUser());
     }
+  }
+  deleteUser(): void {
+    this.userService.deleteUser(() => this.router.navigate(['login']));
   }
 }
 

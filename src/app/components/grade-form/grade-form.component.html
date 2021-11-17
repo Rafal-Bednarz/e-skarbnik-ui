@@ -1,0 +1,20 @@
+ 
+
+<div *ngIf="!startApiRequest">
+    <mat-dialog-content class="mat-typography">
+        <div mat-dialog-title>Podaj nazwę nowej klasy</div>
+        <mat-card>
+            <mat-form-field appearance="outline">
+                <mat-label>Podaj nazwę</mat-label>
+                <input matInput placeholder="podaj nazwę klasy" [(ngModel)]="name">
+            </mat-form-field>
+            <div class="error"><mat-error *ngIf="error">{{error}}</mat-error></div>
+        </mat-card>
+    </mat-dialog-content>
+    <div class="action">
+        <button mat-stroked-button color="accent" (click)="addGrade()">Dodaj klasę 
+            <mat-icon>group_add_outlined</mat-icon>
+        </button>
+    </div>
+</div>
+<mat-spinner *ngIf="startApiRequest" color="accent"></mat-spinner>

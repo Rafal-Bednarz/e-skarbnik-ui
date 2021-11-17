@@ -19,23 +19,40 @@ import { UrlService } from './services/url.service';
 import { ActivateComponent } from './components/activate/activate.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { InfoComponent } from './components/info/info.component';
+import { UserComponent } from './components/user/user.component';
+import { AuthGuardService } from './services/auth-guard.service';
+import { NoAuthGuardService } from './services/no-auth-guard.service';
+import { GradeFormComponent } from './components/grade-form/grade-form.component';
+import { ConfirmComponent } from './components/confirm/confirm.component';
+import { GradeComponent } from './components/grade/grade.component';
 
 export const ROUTES = [
   {
     path: 'login',
     component: LoginComponent,
+    canActivate: [NoAuthGuardService]
+    
   },
   {
     path: 'registration',
-    component: RegistrationComponent, 
+    component: RegistrationComponent,
+    canActivate: [NoAuthGuardService] 
+    
   },
   {
     path: 'registration/:username/:registrationToken',
-    component: ActivateComponent
+    component: ActivateComponent,
+    canActivate: [NoAuthGuardService]
+    
   },
   {
     path: 'contact',
     component: ContactComponent
+  },
+  {
+    path: '',
+    component: UserComponent,
+    canActivate: [AuthGuardService]
   }
 ]
 
@@ -48,7 +65,11 @@ export const ROUTES = [
     RegisterInfoComponent,
     ActivateComponent,
     ContactComponent,
-    InfoComponent
+    InfoComponent,
+    UserComponent,
+    GradeFormComponent,
+    ConfirmComponent,
+    GradeComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +86,9 @@ export const ROUTES = [
     {provide: HTTP_INTERCEPTORS, useClass: SessionInterceptor, multi: true},
     AuthService,
     RegistrationService,
-    UrlService
+    UrlService,
+    AuthGuardService,
+    NoAuthGuardService
   ]
 })
 export class AppModule { }

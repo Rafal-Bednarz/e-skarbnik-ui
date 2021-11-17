@@ -4,7 +4,7 @@
     background-color: var(--primary);
 }
 .mat-card {
-    background: var(--info);
+    background: var(--secondary);
     padding: 5%;
     overflow: hidden;
     color: var(--accent);
@@ -15,7 +15,7 @@
   }
 .mat-card-content {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background: var(--info);
+    background: var(--secondary);
 }
 .header {
     width: 100%;
