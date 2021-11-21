@@ -17,7 +17,7 @@ export class UserService {
   constructor(private http: HttpClient, private auth: AuthService, public dialog: MatDialog) { }
 
   refreshUser(callback: any): void {
-    const resp  = this.http.get<User>(UrlService.getApi() + 'user').subscribe(
+    const resp  = this.http.get<User>(UrlService.getUrl() + 'user').subscribe(
       (user: User) => {
         this.user = user;
         return callback && callback();
@@ -32,8 +32,8 @@ export class UserService {
   }
   showInfo(): Observable<boolean> {
     const dialogRef = this.dialog.open(ConfirmComponent, {
-      data: 'Usunięcie konta spowoduje bezpowrotne usunięcie wszystkich klas, uczniów, oraz wpłat i wypłat. ' + 
-             '' + 'Czy chcesz usunąc konto' + ' " ' + this.user.username + ' " ' + '?'
+      data: '<p>Usunięcie konta spowoduje bezpowrotne usunięcie wszystkich klas, uczniów, oraz wpłat i wypłat. </p>'+ 
+      '<p>Czy chcesz usunąc konto' + ' " ' + this.user.username + ' " ' + '?</p>'
     });
     return dialogRef.afterClosed();
   }
@@ -41,7 +41,7 @@ export class UserService {
     this.showInfo().subscribe(
       (resp: boolean) => {
         if(resp) {
-          this.http.delete(UrlService.getApi() + 'user/delete').subscribe(
+          this.http.delete(UrlService.getUrl() + 'user/delete').subscribe(
             () => {
               this.auth.clearAuthenticated();
               return callback && callback();

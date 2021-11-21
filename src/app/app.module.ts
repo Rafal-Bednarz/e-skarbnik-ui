@@ -25,6 +25,8 @@ import { NoAuthGuardService } from './services/no-auth-guard.service';
 import { GradeFormComponent } from './components/grade-form/grade-form.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { GradeComponent } from './components/grade/grade.component';
+import { StudentFormComponent } from './components/student-form/student-form.component';
+import { GradesService } from './services/grades.service';
 
 export const ROUTES = [
   {
@@ -53,6 +55,11 @@ export const ROUTES = [
     path: '',
     component: UserComponent,
     canActivate: [AuthGuardService]
+  },
+  {
+    path: 'grade/:id',
+    component: GradeComponent,
+    canActivate: [AuthGuardService]
   }
 ]
 
@@ -69,7 +76,8 @@ export const ROUTES = [
     UserComponent,
     GradeFormComponent,
     ConfirmComponent,
-    GradeComponent
+    GradeComponent,
+    StudentFormComponent
   ],
   imports: [
     BrowserModule,
@@ -88,7 +96,7 @@ export const ROUTES = [
     RegistrationService,
     UrlService,
     AuthGuardService,
-    NoAuthGuardService
+    NoAuthGuardService,
   ]
 })
 export class AppModule { }

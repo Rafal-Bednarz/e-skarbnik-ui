@@ -1,5 +1,5 @@
 <div class="container">
-    <mat-card class="mat-typography" *ngIf="!startApiResponse">
+    <mat-card class="mat-typography" *ngIf="!RESPONSE_IS_LOAD()">
         <div class="header">
             <mat-card-title>Witaj <span class="user">{{username}}</span>!</mat-card-title>
         </div>
@@ -13,5 +13,5 @@
                 </div>
             </mat-card-actions>
     </mat-card>
-    <mat-spinner color="accent" *ngIf="startApiResponse"></mat-spinner>
+    <mat-spinner color="accent" *ngIf="RESPONSE_IS_LOAD()"></mat-spinner>
 </div>

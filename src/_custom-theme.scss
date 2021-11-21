@@ -9,14 +9,41 @@
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
+$primary: (
+ Main: var(--primary),
+ Light:var(--secondary),
+ Dark: #28002f,
+ contrast: (
+  Main: var(--accent),
+  Light: #000,
+  Dark: #fff
+ ));
+$accent: (
+ Main: var(--accent),
+ Light: #ffc453,
+ Dark: #be6500,
+ contrast: (
+   Main: var(--primary),
+   Light: #fff,
+   Dark: #fff
+  ));
+  $warn: (
+    Main: #B71C1C,
+    Light: #ffc453,
+    Dark: #be6500,
+    contrast: (
+      Main: var(--accent),
+      Light: black,
+      Dark: #fff,
+  ));
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$eskarbnik-ui-primary: mat.define-palette(mat.$teal-palette, 900);
-$eskarbnik-ui-accent: mat.define-palette(mat.$teal-palette, 300);
+$eskarbnik-ui-primary: mat.define-palette($primary, Main, Light, Dark);
+$eskarbnik-ui-accent: mat.define-palette($accent, Main, Light, Dark);
 
 // The warn palette is optional (defaults to red).
-$eskarbnik-ui-warn: mat.define-palette(mat.$red-palette, 900);
+$eskarbnik-ui-warn: mat.define-palette($warn, Main, Light, Dark);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
@@ -25,17 +52,18 @@ $eskarbnik-ui-theme: mat.define-light-theme((
     primary: $eskarbnik-ui-primary,
     accent: $eskarbnik-ui-accent,
     warn: $eskarbnik-ui-warn,
-  )
-));
+  )));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
+
 @include mat.all-component-themes($eskarbnik-ui-theme);
 
 :root {
---accent: #4DB6AC;
---primary: #004D40;
---secondary: darkslategray;
+--accent: rgb(232, 185, 233);
+--primary: #292c57;
+--secondary: #45469c;
 --warn: #B71C1C;
+--third: rgb(203, 164, 212);
 }

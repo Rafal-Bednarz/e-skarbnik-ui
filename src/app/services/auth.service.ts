@@ -17,14 +17,14 @@ export class AuthService {
 
   authenticate(credentials: UserFormLogin, callback: any, error: any): void {
     
-      this.http.post<Boolean>(UrlService.getApi() + 'login', credentials, {}).subscribe(
+      this.http.post<Boolean>(UrlService.getUrl() + 'login', credentials, {}).subscribe(
         (resp: Boolean) => {
           if(resp) {
             const headers = new HttpHeaders(credentials ? 
               {
                 authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password)
               }: {});
-            const resp = this.http.get<User>(UrlService.getApi() + 'user', {headers: headers}).subscribe(
+            const resp = this.http.get<User>(UrlService.getUrl() + 'user', {headers: headers}).subscribe(
               () => {
                 this.setAuthenticated('OK');
                 this.refreshSession();
@@ -53,7 +53,7 @@ export class AuthService {
     return this.errorMessage;
   }
   public getUser(): Observable<User> {
-      return this.http.get<User>(UrlService.getApi() + 'user');
+      return this.http.get<User>(UrlService.getUrl() + 'user');
   }
   refreshSession(): void {
     

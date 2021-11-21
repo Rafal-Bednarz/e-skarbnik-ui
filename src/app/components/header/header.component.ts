@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
   logout(): void {
-    this.http.post(UrlService.getApi() + 'logout', {}, {}).subscribe();
+    this.http.post(UrlService.getUrl() + 'logout', {}, {}).subscribe();
     this.authService.clearAuthenticated();
   }
   authenticated(): string | null {

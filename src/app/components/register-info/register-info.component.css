@@ -9,9 +9,11 @@
     
   }
 .mat-dialog-content {
+    font-size: 2.5vmin;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .mat-dialog-title {
+    font-size: 3vmin;
     width: 100%;
     text-align: center;
     color: var(--accent);
@@ -28,7 +30,4 @@
 .user {
     font-style: italic;
     color: tomato;
-}
-.mat-raised-button {
-    color: var(--accent);
 }

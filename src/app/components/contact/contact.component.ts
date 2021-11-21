@@ -22,26 +22,24 @@ export class ContactComponent implements OnInit {
 
   error = '';
 
-  startApiRequest = false;
-
   constructor(private userService: UserService, private http: HttpClient, 
               private router: Router, private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.startApiRequest = true;
+    UrlService.responseIsLoadTrue();
     this.user = this.userService.getUser();
-    this.startApiRequest = false;
+    UrlService.responseIsLoadFalse();
   }
   send(): void {
-    this.startApiRequest = true;
+    UrlService.responseIsLoadTrue();
 
-    this.http.post(UrlService.getApi() + 'contact', this.setMessage()).subscribe(
+    this.http.post(UrlService.getUrl() + 'contact', this.setMessage()).subscribe(
       () => {
-        this.startApiRequest = false;
+        UrlService.responseIsLoadFalse();
         this.showInfo();
       },
       (error: HttpErrorResponse) => {
-          this.startApiRequest = false;
+          UrlService.responseIsLoadFalse();
           this.error = error.error ? error.error.message : 'Niespodziewany błąd';
       }
     );
@@ -61,5 +59,8 @@ export class ContactComponent implements OnInit {
       () => 
         this.router.navigate(['/'])
       );
+  }
+  RESPONSE_IS_LOAD(): boolean {
+    return UrlService.RESPONSE_IS_LOAD;
   }
 }

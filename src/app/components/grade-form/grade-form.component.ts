@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { GradeService } from 'src/app/services/grade.service';
+import { GradesService } from 'src/app/services/grades.service';
+import { UrlService } from 'src/app/services/url.service';
 
 @Component({
   selector: 'app-grade-form',
@@ -11,21 +12,22 @@ export class GradeFormComponent implements OnInit {
 
   error = '';
 
-  startApiRequest = false;
-
   name = '';
 
-  constructor(private gradeService: GradeService, public dialogRef: MatDialogRef<GradeFormComponent>) { }
+  constructor(private gradesService: GradesService, public dialogRef: MatDialogRef<GradeFormComponent>) { }
 
   ngOnInit(): void {
   }
   addGrade(): void {
-    this.startApiRequest = true;
-    this.gradeService.addGrade(this.name, () => this.close(), () => {this.error = this.gradeService.getError();
-                                                                     this.startApiRequest = false;});
+    UrlService.responseIsLoadTrue();
+    this.gradesService.addGrade(this.name, () => this.close(), () => {this.error = this.gradesService.getError();
+                                                                     UrlService.responseIsLoadFalse();});
 
   }
   close(): void {
     this.dialogRef.close(true);
+  }
+  RESPONSE_IS_LOAD(): boolean {
+    return UrlService.RESPONSE_IS_LOAD;
   }
 }

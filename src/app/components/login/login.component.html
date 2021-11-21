@@ -1,20 +1,20 @@
 <div class="container">
-    <mat-card *ngIf="!startApiRequest">
+    <mat-card *ngIf="!RESPONSE_IS_LOAD()">
         <mat-card-title class="title">Logowanie</mat-card-title>
             <div class= "form">
-                <div>
+                <div class="field">
                     <mat-form-field appearance="fill">
                         <mat-label>podaj login</mat-label>
-                        <input matInput type="string" [(ngModel)] = "user.username">
+                        <input matInput type="text" [(ngModel)] = "user.username">
                         <mat-icon matSuffix>account_circle</mat-icon>
                     </mat-form-field>
                 </div>
-                <div>
+                <div class="field">
                     <mat-form-field appearance="fill">
                         <mat-label>podaj hasło</mat-label>
                         <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)] = "user.password">
                         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </button>
                     </mat-form-field>
                 </div>
@@ -27,7 +27,7 @@
             <button mat-raised-button color="primary" (click) = "login()">Zaloguj</button><br><br>
             <a mat-stroked-button color="primary" routerLink="/registration">Nie masz konta? Zarejestruj się.</a>
     </mat-card>
-    <mat-spinner color="accent" *ngIf="startApiRequest"></mat-spinner>
+    <mat-spinner color="accent" *ngIf="RESPONSE_IS_LOAD()"></mat-spinner>
 </div>
 
 

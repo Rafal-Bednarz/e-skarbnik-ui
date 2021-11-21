@@ -4,6 +4,7 @@
     background-color: var(--primary);
 }
 .mat-card {
+    font-size: 2.5vmin;
     background: var(--secondary);
     padding: 5%;
     overflow: hidden;
@@ -23,6 +24,7 @@
     margin-bottom: 2rem;
 }
 .mat-card-title {
+    font-size: 3vmin;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -37,6 +39,4 @@
 }
 .mat-spinner {
     margin-top: 10%;
-    margin-left: auto;
-    margin-right: auto;
 }

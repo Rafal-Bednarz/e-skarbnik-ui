@@ -1,12 +1,12 @@
-<mat-toolbar color=primary>
-    <span class="navbar" > <button mat-icon-button matTooltip="Strona główna"><mat-icon color="accent" routerLink="/">school</mat-icon></button> Eskarbnik</span>
+<mat-toolbar color="primary">
+    <span class="navbar" > <button mat-icon-button color="accent" matTooltip="Strona główna"><mat-icon routerLink="/">school</mat-icon></button> Eskarbnik</span>
 
-    <button mat-icon-button>
-        <mat-icon color="accent" matTooltip="Napisz do nas" routerLink="/contact">mail_outline</mat-icon>
+    <button color="accent" mat-icon-button>
+        <mat-icon matTooltip="Napisz do nas" routerLink="/contact">mail_outline</mat-icon>
     </button>   
-    <button *ngIf="authenticated()" matTooltip="Profil" mat-icon-button color="primary" 
+    <button *ngIf="authenticated()" color="accent" matTooltip="Profil" mat-icon-button
     [matMenuTriggerFor]="menu">
-    <mat-icon class="account" color="accent">account_circle</mat-icon>
+    <mat-icon class="account">account_circle</mat-icon>
     </button>
     
 </mat-toolbar>
@@ -24,7 +24,7 @@
       wyloguj
   </div>
   <div mat-menu-item (click)="deleteUser()">
-     <mat-icon mat-menu-icon>settings</mat-icon>
+     <mat-icon mat-menu-icon>manage_accounts_outlined</mat-icon>
      usuń konto
   </div>    
 </mat-menu>

@@ -5,6 +5,7 @@ import { Router} from '@angular/router';
 import { RegistrationService } from 'src/app/services/registration.service';
 import { MatDialog } from '@angular/material/dialog';
 import { RegisterInfoComponent } from '../register-info/register-info.component';
+import { UrlService } from 'src/app/services/url.service';
 
 @Component({
   selector: 'app-registration',
@@ -24,17 +25,15 @@ export class RegistrationComponent implements OnInit {
 
   message='';
 
-  startApiRequest = false;
-
   constructor(private router: Router, private regService: RegistrationService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
   registerUser(): void {
-    this.startApiRequest = true;
+    UrlService.responseIsLoadTrue();
     this.regService.registerUser(this.user, this.repeat, 
-                                () => { this.startApiRequest = false; this.showInfo(this.user);}, 
-                                () => { this.startApiRequest = false; this.message = this.regService.getMessage()});
+                                () => { UrlService.responseIsLoadFalse(); this.showInfo(this.user);}, 
+                                () => { UrlService.responseIsLoadFalse(); this.message = this.regService.getMessage()});
     
   }
   showInfo(user: UserFormRegistration): void {
@@ -45,5 +44,8 @@ export class RegistrationComponent implements OnInit {
       () => 
         this.router.navigate(['login'])
     );
+  }
+  RESPONSE_IS_LOAD(): boolean {
+    return UrlService.RESPONSE_IS_LOAD;
   }
 }

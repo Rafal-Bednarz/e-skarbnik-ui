@@ -18,7 +18,7 @@ export class RegistrationService {
       this.message = 'Hasła nie są jednakowe';
       return error && error();
     } else {
-      this.http.post<User>(UrlService.getApi() + 'registration', user, {}).subscribe(
+      this.http.post<User>(UrlService.getUrl() + 'registration', user, {}).subscribe(
         (user: User) => {
           return callback && callback();
         },

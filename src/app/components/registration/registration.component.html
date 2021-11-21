@@ -1,5 +1,5 @@
 <div class="container">
-    <mat-card *ngIf="!startApiRequest">
+    <mat-card *ngIf="!RESPONSE_IS_LOAD()">
             <mat-card-title class="title"> Rejestracja</mat-card-title>
        <div class="form">
         <div>
@@ -33,5 +33,5 @@
         <button mat-raised-button color="primary" (click)="registerUser()">Utwórz konto</button><br><br>
         <a mat-stroked-button color="primary" routerLink="/login">Masz już konto? Zaloguj się.</a>
     </mat-card>
-    <mat-spinner color="accent" *ngIf="startApiRequest"></mat-spinner>
+    <mat-spinner color="accent" *ngIf="RESPONSE_IS_LOAD()"></mat-spinner>
 </div>

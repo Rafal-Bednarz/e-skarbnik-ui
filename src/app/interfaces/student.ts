@@ -5,6 +5,6 @@ export interface Student {
     nr: number;
     id: number;
     fullname: string;
-    paymentSum: number;
+    paymentsSum: number;
     payments: Payment[];
 }

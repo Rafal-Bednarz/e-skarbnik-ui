@@ -1,10 +1,11 @@
-
 .container {
     min-height: 80%;
     padding-top: 8%;
+    padding-bottom: 8%;
     background-color: var(--primary);
 }
 .mat-card {
+    width: 70%;
     background: var(--accent);
     margin-right: auto;
     margin-left: auto;
@@ -12,31 +13,31 @@
     max-width: min-content;
     max-height: min-content;
 }
-.form {
-    width: 100%;
-    color: black;
-    max-height: min-content;
-}
 .error {
     font-size: smaller;
     margin-bottom: 1rem;
 }
 .title {
+    width: 100%;
+    font-size: medium;
+    margin-bottom: 2rem;
     color: var(--primary);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin-bottom: 2rem;
+}
+.mat-spinner {
+    margin-top: 10%;
+    margin-bottom: auto;
 }
 .mat-raised-button {
-    color: var(--accent);
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif !important;
 }
 .mat-stroked-button {
     max-width: min-content;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-.mat-spinner {
-    margin-top: 10%;
-    margin-left: auto;
-    margin-bottom: auto;
-    margin-right: auto;
+.field {
+    width: 100%;
+}
+.mat-form-field {
+    width: 100%;
 }

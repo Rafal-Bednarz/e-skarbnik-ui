@@ -1,3 +1,70 @@
 /* You can add global styles to this file, and also import other style files */
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mat-raised-button {
+    font-size: x-small;
+}
+.mat-stroked-button {
+    font-size: x-small; 
+}
+.mat-paginator {
+    font-size: 1.9vmin;
+    background: var(--secondary);
+    width: 96%;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--accent);
+}
+.mat-header-row {
+    background: var(--secondary);
+}    
+.mat-header-cell {
+    padding-left: 0.3rem !important;
+    padding-right: 0px !important;
+    color: var(--accent);
+    font-size: 1.9vmin;
+    font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+    font-style: oblique;
+}
+.mat-cell {
+    border-top: solid 0.1px var(--primary);
+    padding-left: 0.3rem !important;
+    padding-right: 0px !important;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: var(--secondary);
+    font-size: 1.9vmin;
+}
+.mat-row:nth-child(odd) {
+    background: var(--accent);
+}
+.mat-row:nth-child(even) {
+    background: var(--third)
+}
+.table-container {
+    width: 100%;  
+}
+.mat-table {
+    width: 96%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.mat-spinner {
+    margin-left: auto;
+    margin-right: auto;
+}
+.form {
+    width: 100%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    min-height: min-content;
+    width: 100%;
+}
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    background-color: var(--accent);
+    border-radius: 5px;
+}
+.search {
+    max-width: 50%;
+}
+.mat-form-field {
+    font-size: x-small;
+}

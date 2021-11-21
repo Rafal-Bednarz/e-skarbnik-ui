@@ -1,7 +1,8 @@
 
-import { Component, DoCheck, OnChanges, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { UrlService } from 'src/app/services/url.service';
 import { UserFormLogin } from '../../interfaces/user-form-login'
 
 @Component({
@@ -20,23 +21,24 @@ export class LoginComponent implements OnInit {
     username: "",
     password: ""
   }
-  startApiRequest = false;
   constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   login() {
-    this.startApiRequest = true;
+    UrlService.responseIsLoadTrue();
     this.auth.authenticate(this.user, () => {
       this.router.navigate(['/']);
     }, () => {
-      this.startApiRequest = false;
+      UrlService.responseIsLoadFalse();
       this.message = 'Nieprawidłowy login lub hasło';
     });
   }
   getValidateError(): string {
     return this.auth.getErrorMessage();
   }
- 
+  RESPONSE_IS_LOAD(): boolean {
+    return UrlService.RESPONSE_IS_LOAD;
+  }
 }

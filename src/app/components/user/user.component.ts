@@ -1,14 +1,13 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog} from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Grade } from 'src/app/interfaces/grade';
-import { PayOff } from 'src/app/interfaces/payOff';
 import { User } from 'src/app/interfaces/user';
-import { GradeService } from 'src/app/services/grade.service';
-
-import { ConfirmComponent } from '../confirm/confirm.component';
+import { GradesService } from 'src/app/services/grades.service';
+import { UrlService } from 'src/app/services/url.service';
 import { GradeFormComponent } from '../grade-form/grade-form.component';
 
 @Component({
@@ -16,7 +15,7 @@ import { GradeFormComponent } from '../grade-form/grade-form.component';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-export class UserComponent implements OnInit, AfterViewInit {
+export class UserComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -28,19 +27,13 @@ export class UserComponent implements OnInit, AfterViewInit {
   user!: User;
 
   grades: Grade[] = [];
+  dialogIsOpen = false;
 
-  payOffs: PayOff[] = [];
-
-  startApiRequest = false;
-
-  constructor(private gradeService: GradeService, 
-              private dialog: MatDialog) {
+  constructor(private gradesService: GradesService, public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
     this.getGrades();
-  }
-  ngAfterViewInit(): void {
   }
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -50,19 +43,20 @@ export class UserComponent implements OnInit, AfterViewInit {
     }
   }
   refreshGrades(): void {
-    this.grades = this.gradeService.getGrades();
-    this.startApiRequest = false;
+    this.grades = this.gradesService.getGrades();
+    UrlService.responseIsLoadFalse();
     this.createDataSource();                                                                                                                                                           
   }
   getGrades(): void {
-    this.startApiRequest = true;
-    this.gradeService.refreshGrades().subscribe(
+    UrlService.responseIsLoadTrue();
+    this.gradesService.refreshGrades().subscribe(
       () => {
         this.refreshGrades();
       }
     );
   }
   addGrade(): void {
+    this.dialogIsOpen = true;
     const dialogRef = this.dialog.open(GradeFormComponent, {
       width:'80%'
     });
@@ -70,6 +64,7 @@ export class UserComponent implements OnInit, AfterViewInit {
       (resp: boolean) => {
         if(resp) {
         this.refreshGrades();
+        this.dialogIsOpen = false;
         } 
       }
     );
@@ -87,17 +82,9 @@ export class UserComponent implements OnInit, AfterViewInit {
                       this.dataSource.sort = this.sort; }, 1);
   }
   deleteGrade(id: string, name: string): void {
-    const message = 'Usunięcie klasy spowoduje, również bezpowrotne usunięcie wszystkich jej uczniów'
-                    + ', wpłat i wypłat. Czy chcesz usunąć klasę ' + '"' + name + '" ?';
-    const dialogRef = this.dialog.open(ConfirmComponent, 
-      {
-        data: message
-      });
-      dialogRef.afterClosed().subscribe((resp: boolean) => {
-        if(resp) {
-        this.startApiRequest = true; 
-        this.gradeService.deleteGrade(id, () => this.refreshGrades()); 
-        }
-    })
+    this.gradesService.deleteGrade(id, name, ()=> this.refreshGrades());
+  }
+  RESPONSE_IS_LOAD(): boolean {
+    return UrlService.RESPONSE_IS_LOAD;
   }
 }

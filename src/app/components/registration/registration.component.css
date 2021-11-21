@@ -13,29 +13,22 @@
     max-width: min-content;
     max-height: min-content;
 }
-.form {
-    min-height: min-content;
-    width: 100%;
-    color: black;
-}
 .error {
     font-size: smaller;
     margin-bottom: 1rem;
 }
 .title {
+    font-size: medium;
     margin-bottom: 2rem;
     color: var(--primary);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .mat-spinner {
     margin-top: 10%;
-    margin-left: auto;
     margin-bottom: auto;
-    margin-right: auto;
 }
 .mat-raised-button {
-    color: var(--accent);
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif !important;
 }
 .mat-stroked-button {
     max-width: min-content;

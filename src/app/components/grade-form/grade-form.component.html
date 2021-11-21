@@ -1,12 +1,10 @@
- 
-
-<div *ngIf="!startApiRequest">
+ <div *ngIf="!RESPONSE_IS_LOAD()">
     <mat-dialog-content class="mat-typography">
         <div mat-dialog-title>Podaj nazwę nowej klasy</div>
         <mat-card>
             <mat-form-field appearance="outline">
                 <mat-label>Podaj nazwę</mat-label>
-                <input matInput placeholder="podaj nazwę klasy" [(ngModel)]="name">
+                <input matInput placeholder="nazwa" [(ngModel)]="name">
             </mat-form-field>
             <div class="error"><mat-error *ngIf="error">{{error}}</mat-error></div>
         </mat-card>
@@ -17,4 +15,4 @@
         </button>
     </div>
 </div>
-<mat-spinner *ngIf="startApiRequest" color="accent"></mat-spinner>
+<mat-spinner color="accent" *ngIf="RESPONSE_IS_LOAD()"></mat-spinner>
