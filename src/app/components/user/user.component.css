@@ -3,26 +3,25 @@
     background: var(--primary);
 }
 .submenu {
+    width: 96%;
     padding-left: 2%;
     padding-right: 2%;
     padding-top: 2%;
     color: var(--primary);
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: baseline;
 }
-.mat-raised-button {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+.add-button {
+    color: var(--accent);
+    background: var(--secondary);
 }
-.mat-label- {
-    color: var(--secondary);
-}
+
 ::ng-deep .menu {
     background: var(--secondary);
 }
 .mat-icon-button {
     width: 50%;
+}
+.mat-icon-button :hover {
+    transform: scale(1.1);
 }
 .spinner {
     width: 100%;
@@ -32,5 +31,60 @@
     background-color: var(--accent);
     border-radius: 5px;
 }
-
+.subcontainer {
+    padding-top: 1rem;
+    clear: right;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: baseline;
+    min-height: min-content;
+}
+.mat-card {
+    margin-top: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
+    font-family: Verdana, Geneva, Tahoma, serif;
+    background: var(--accent);
+    width: 170px;
+}
+.divider {
+    float: left;
+    width: 70%;
+    margin-left: 70px;
+    margin-right: auto;
+    background-color: var(--primary);
+    height: 0.3px;
+    transform: rotate(90deg) translate(70px);
+}
+.mat-card-header {
+    width: 100%;
+}
+.mat-card-title {
+    color: var(--primary);
+    width: 100%;
+    font-size: medium;
+}
+.budget {
+    max-width: min-content;
+    border: var(--primary) solid 1px;
+    border-radius: 5px;
+    padding: 10px 10px 10px 10px;
+}
+.actions {
+    display: flex;
+    flex-direction: column;  
+}
+.budget-zero {
+    background: rgb(255, 56, 56);
+}
+.budget-positive {
+    background: rgb(115, 199, 93);
+}
+.container-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 

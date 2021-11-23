@@ -4,9 +4,8 @@
     font-family: 'Courier New', Courier, monospace;
     color: var(--accent);
 }
-.account {
-    transform: scale(2);
-    
+.mat-icon-button :hover {
+    transform: scale(1.1);
 }
 .mat-toolbar {
     height: 10%;
@@ -21,4 +20,7 @@
 }
 .mat-divider {
     background: var(--accent);
+}
+.mat-button :hover {
+    transform: scale(1.1);
 }

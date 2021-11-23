@@ -20,10 +20,7 @@ export class UserComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  displayedColumns: string[] = ['nr', 'name', 'studentsAmount', 'budget', 'paymentsSum', 'payOffsSum', 'action'];
-
-  dataSource!: MatTableDataSource<Grade>;
-
+  dataSource: Grade[] = []
   user!: User;
 
   grades: Grade[] = [];
@@ -35,17 +32,17 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
     this.getGrades();
   }
-  applyFilter(event: Event): void {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-    if(this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
+
+ applyFilter(event: Event) {
+  const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource = this.grades.filter((grade: Grade) => {
+      return grade.name.toLowerCase().includes(filterValue.toLowerCase().trim());
+  })
+ }
   refreshGrades(): void {
     this.grades = this.gradesService.getGrades();
-    UrlService.responseIsLoadFalse();
-    this.createDataSource();                                                                                                                                                           
+    this.dataSource = this.grades;
+    UrlService.responseIsLoadFalse();                                                                                                                                                           
   }
   getGrades(): void {
     UrlService.responseIsLoadTrue();
@@ -75,14 +72,9 @@ export class UserComponent implements OnInit {
     paginator.previousPageLabel = 'Poprzednia strona';
     paginator.itemsPerPageLabel = 'Ilość klas na stronie'
   }
-  createDataSource(): void {
-    this.dataSource = new MatTableDataSource(this.grades);
-    setTimeout(() => {this.dataSource.paginator = this.paginator; 
-                      this.setPaginator(); 
-                      this.dataSource.sort = this.sort; }, 1);
-  }
-  deleteGrade(id: string, name: string): void {
-    this.gradesService.deleteGrade(id, name, ()=> this.refreshGrades());
+
+  deleteGrade(id: number, name: string): void {
+    this.gradesService.deleteGrade(id.toString(), name, ()=> this.refreshGrades());
   }
   RESPONSE_IS_LOAD(): boolean {
     return UrlService.RESPONSE_IS_LOAD;

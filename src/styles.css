@@ -13,11 +13,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     width: 96%;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 5%;
     color: var(--accent);
 }
 .mat-header-row {
     background: var(--secondary);
-}    
+}  
 .mat-header-cell {
     padding-left: 0.3rem !important;
     padding-right: 0px !important;
@@ -49,6 +50,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     margin-right: auto;
 }
 .mat-spinner {
+    width: 10%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -58,11 +60,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     min-height: min-content;
     width: 100%;
 }
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
-    background-color: var(--accent);
-    border-radius: 5px;
-}
 .search {
+    float: right;
     max-width: 50%;
 }
 .mat-form-field {
