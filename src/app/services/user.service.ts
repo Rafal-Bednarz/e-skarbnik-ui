@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { ConfirmComponent } from '../components/confirm/confirm.component';
 import { User } from '../interfaces/user';
 import { AuthService } from './auth.service';
-import { UrlService } from './url.service';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class UserService {
   constructor(private http: HttpClient, private auth: AuthService, public dialog: MatDialog) { }
 
   refreshUser(callback: any): void {
-    const resp  = this.http.get<User>(UrlService.getUrl() + 'user').subscribe(
+    const resp  = this.http.get<User>(ApiService.getUrl() + 'user').subscribe(
       (user: User) => {
         this.user = user;
         return callback && callback();
@@ -41,7 +41,7 @@ export class UserService {
     this.showInfo().subscribe(
       (resp: boolean) => {
         if(resp) {
-          this.http.delete(UrlService.getUrl() + 'user/delete').subscribe(
+          this.http.delete(ApiService.getUrl() + 'user/delete').subscribe(
             () => {
               this.auth.clearAuthenticated();
               return callback && callback();

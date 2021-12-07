@@ -1,10 +1,10 @@
 import { HttpClient, HttpErrorResponse, HttpHandler, HttpHeaders, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from '../interfaces/user';
 import { UserFormLogin } from '../interfaces/user-form-login';
-import { UrlService } from './url.service';
-import { UserService } from './user.service';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,18 +13,18 @@ export class AuthService {
 
   errorMessage = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   authenticate(credentials: UserFormLogin, callback: any, error: any): void {
     
-      this.http.post<Boolean>(UrlService.getUrl() + 'login', credentials, {}).subscribe(
+      this.http.post<Boolean>(ApiService.getUrl() + 'login', credentials, {}).subscribe(
         (resp: Boolean) => {
           if(resp) {
             const headers = new HttpHeaders(credentials ? 
               {
                 authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password)
               }: {});
-            const resp = this.http.get<User>(UrlService.getUrl() + 'user', {headers: headers}).subscribe(
+            const resp = this.http.get<User>(ApiService.getUrl() + 'user', {headers: headers}).subscribe(
               () => {
                 this.setAuthenticated('OK');
                 this.refreshSession();
@@ -35,8 +35,16 @@ export class AuthService {
           return callback && callback();
         },
         (err: HttpErrorResponse) => {
-          this.errorMessage = err.error ? err.error.message : 'nieznany błąd'; 
-          return error && error();
+          if(err.error && err.status === 400) {
+            if(err.error.message.toLowerCase() === 'konto nieaktywne') {
+            this.errorMessage = err.error.message;
+            } else {
+              this.errorMessage = 'Nieprawidłowy login lub hasło';
+            }
+            return error && error();
+          } else {
+            this.router.navigate(['**']);
+          }
         }
       );
   }
@@ -53,10 +61,10 @@ export class AuthService {
     return this.errorMessage;
   }
   public getUser(): Observable<User> {
-      return this.http.get<User>(UrlService.getUrl() + 'user');
+      return this.http.get<User>(ApiService.getUrl() + 'user');
   }
   refreshSession(): void {
     
-    window.location.assign(UrlService.getMainUrl());
+    window.location.assign(ApiService.getMainUrl());
   }
 }

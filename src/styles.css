@@ -2,15 +2,18 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-raised-button {
+    font-family: Verdana, Geneva, Tahoma, serif;
     font-size: x-small;
 }
 .mat-stroked-button {
+    font-family: Verdana, Geneva, Tahoma, serif;
     font-size: x-small; 
 }
 .mat-paginator {
-    font-size: 1.9vmin;
+    font-family: Verdana, Geneva, Tahoma, serif;
+    font-size: 1.7vmin;
     background: var(--secondary);
-    width: 96%;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 5%;
@@ -23,17 +26,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     padding-left: 0.3rem !important;
     padding-right: 0px !important;
     color: var(--accent);
-    font-size: 1.9vmin;
-    font-family: Verdana, Geneva, Tahoma, sans-serif !important;
-    font-style: oblique;
+    font-size: 2.5vmin;
+
+    font-family: Verdana, Geneva, Tahoma, serif !important;
+    font-style: italic;
 }
 .mat-cell {
     border-top: solid 0.1px var(--primary);
     padding-left: 0.3rem !important;
     padding-right: 0px !important;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: var(--secondary);
-    font-size: 1.9vmin;
+    font-family: Verdana, Geneva, Tahoma, serif;
+    color: black;
+    font-size: 2.5vmin;
 }
 .mat-row:nth-child(odd) {
     background: var(--accent);
@@ -41,29 +45,87 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-row:nth-child(even) {
     background: var(--third)
 }
-.table-container {
-    width: 100%;  
-}
 .mat-table {
-    width: 96%;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
 }
 .mat-spinner {
-    width: 10%;
+    transform: scale(0.5);
     margin-left: auto;
     margin-right: auto;
 }
 .form {
     width: 100%;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, serif;
     min-height: min-content;
-    width: 100%;
 }
 .search {
+    max-width: 40%;
     float: right;
-    max-width: 50%;
 }
 .mat-form-field {
     font-size: x-small;
+}
+.submenu {
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-top: 2%;
+    color: var(--primary);
+}
+.name-card {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    height: 2rem;
+    background: var(--accent);
+    border: var(--primary) solid 1px;
+    border-radius: 3px;
+    font-family: Verdana, Geneva, Tahoma, serif;
+    font-size: 3vmin;
+}
+.value-card {
+    padding: 0.5em  0.5em  0.5em  0.5em;
+    min-width: max-content;
+    min-height: max-content;
+    max-height: max-content;
+    max-width: max-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: stretch;
+    border-radius: 3px;
+    background: var(--secondary);
+    color: var(--primary);
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 2%;
+    font-family: Verdana, Geneva, Tahoma, serif;
+}
+.budget-icon {
+    margin-right: 2rem;
+    font-size: 3vmin;
+}
+.budget-card {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    height: 2rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    margin-left: 10px;
+    font-size: 3vmin;
+    border: var(--primary) solid 1px;
+    border-radius: 3px;
+    background: var(--accent);
+}
+.budget-zero {
+    color: var(--warn);
+    border: var(--warn) solid 1.2px;
+}
+.budget-positive {
+    color: rgb(28, 134, 51);
+    border: rgb(28, 134, 51) solid 1.2px;
 }

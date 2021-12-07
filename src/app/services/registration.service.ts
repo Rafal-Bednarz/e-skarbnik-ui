@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, Output, EventEmitter} from '@angular/core';
 import { User } from '../interfaces/user';
 import { UserFormRegistration } from '../interfaces/user-form-regstration';
-import { UrlService } from './url.service';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class RegistrationService {
       this.message = 'Hasła nie są jednakowe';
       return error && error();
     } else {
-      this.http.post<User>(UrlService.getUrl() + 'registration', user, {}).subscribe(
+      this.http.post<User>(ApiService.getUrl() + 'registration', user, {}).subscribe(
         (user: User) => {
           return callback && callback();
         },

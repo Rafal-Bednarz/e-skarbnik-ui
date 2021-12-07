@@ -5,7 +5,7 @@ import { Router} from '@angular/router';
 import { RegistrationService } from 'src/app/services/registration.service';
 import { MatDialog } from '@angular/material/dialog';
 import { RegisterInfoComponent } from '../register-info/register-info.component';
-import { UrlService } from 'src/app/services/url.service';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-registration',
@@ -30,10 +30,10 @@ export class RegistrationComponent implements OnInit {
   ngOnInit(): void {
   }
   registerUser(): void {
-    UrlService.responseIsLoadTrue();
+    ApiService.responseIsLoadTrue();
     this.regService.registerUser(this.user, this.repeat, 
-                                () => { UrlService.responseIsLoadFalse(); this.showInfo(this.user);}, 
-                                () => { UrlService.responseIsLoadFalse(); this.message = this.regService.getMessage()});
+                                () => { ApiService.responseIsLoadFalse(); this.showInfo(this.user);}, 
+                                () => { ApiService.responseIsLoadFalse(); this.message = this.regService.getMessage()});
     
   }
   showInfo(user: UserFormRegistration): void {
@@ -46,6 +46,6 @@ export class RegistrationComponent implements OnInit {
     );
   }
   RESPONSE_IS_LOAD(): boolean {
-    return UrlService.RESPONSE_IS_LOAD;
+    return ApiService.RESPONSE_IS_LOAD;
   }
 }

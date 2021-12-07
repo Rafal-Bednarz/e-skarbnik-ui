@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { User } from 'src/app/interfaces/user';
-import { UrlService } from 'src/app/services/url.service';
+import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
   logout(): void {
-    this.http.post(UrlService.getUrl() + 'logout', {}, {}).subscribe();
+    this.http.post(ApiService.getUrl() + 'logout', {}, {}).subscribe();
     this.authService.clearAuthenticated();
   }
   authenticated(): string | null {

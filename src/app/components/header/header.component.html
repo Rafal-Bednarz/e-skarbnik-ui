@@ -1,12 +1,13 @@
 <mat-toolbar color="primary">
-    <span class="navbar" > <button mat-icon-button color="accent" matTooltip="Strona główna"><mat-icon routerLink="/">school</mat-icon></button> Eskarbnik</span>
+    <span class="navbar" > <button mat-icon-button matTooltip="Strona główna">
+      <mat-icon fontSet="material-icons-outlined" routerLink="/">home</mat-icon></button> Eskarbnik</span>
 
-    <button color="accent" mat-icon-button>
-        <mat-icon matTooltip="Napisz do nas" routerLink="/contact">mail_outline</mat-icon>
+    <button mat-icon-button>
+        <mat-icon fontSet="material-icons-outlined" matTooltip="Napisz do nas" routerLink="/contact">email</mat-icon>
     </button>   
-    <button *ngIf="authenticated()" color="accent" matTooltip="Profil" mat-icon-button
+    <button *ngIf="authenticated()" matTooltip="Profil" mat-icon-button
     [matMenuTriggerFor]="menu">
-    <mat-icon class="account">account_circle</mat-icon>
+    <mat-icon fontSet="material-icons-outlined" fontWeight="lighter">account_circle</mat-icon>
     </button>
     
 </mat-toolbar>

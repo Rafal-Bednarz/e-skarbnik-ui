@@ -1,14 +1,18 @@
 ::ng-deep  .mat-dialog-container {
+    
     background: var(--secondary) !important;
     padding: 5% !important;
     overflow: hidden !important;
     color: var(--accent);
-    max-width: 80%;
+    min-width: fit-content;
+    max-width: 90%;
     margin-left: auto;
     margin-right: auto;
 }
 .mat-dialog-content {
+    line-height: 4vmin;
     text-align: center;
+    text-align-last: center;
     font-size: 2.5vmin;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }

@@ -1,19 +1,17 @@
 .container {
+    position: relative;
+    padding-bottom: 2%;
     min-height: 80%;
     background: var(--primary);
-}
-.submenu {
-    width: 96%;
-    padding-left: 2%;
-    padding-right: 2%;
-    padding-top: 2%;
-    color: var(--primary);
 }
 .add-button {
     color: var(--accent);
     background: var(--secondary);
 }
-
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    background: var(--accent);
+    border-radius: 5px;
+}
 ::ng-deep .menu {
     background: var(--secondary);
 }
@@ -27,12 +25,9 @@
     width: 100%;
     padding-top: 10%;
 }
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
-    background-color: var(--accent);
-    border-radius: 5px;
-}
 .subcontainer {
     padding-top: 1rem;
+    padding-bottom: 2rem;
     clear: right;
     display: flex;
     flex-direction: row;
@@ -42,7 +37,7 @@
     min-height: min-content;
 }
 .mat-card {
-    margin-top: 30px;
+    margin-top: 10px;
     margin-left: 30px;
     margin-right: 30px;
     font-family: Verdana, Geneva, Tahoma, serif;
@@ -67,24 +62,31 @@
     font-size: medium;
 }
 .budget {
-    max-width: min-content;
+    width: 60px;
     border: var(--primary) solid 1px;
     border-radius: 5px;
     padding: 10px 10px 10px 10px;
+    background: var(--accent);
 }
 .actions {
     display: flex;
     flex-direction: column;  
 }
 .budget-zero {
-    background: rgb(255, 56, 56);
+    color: var(--warn);
+    border: var(--warn) solid 1.2px;
 }
 .budget-positive {
-    background: rgb(115, 199, 93);
+    color: rgb(28, 134, 51);
+    border: rgb(28, 134, 51) solid 1.2px;
 }
 .container-content {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+.mat-paginator {
+    position: absolute;
+    bottom: 0;
 }
 

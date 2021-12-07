@@ -1,45 +1,47 @@
 <div class="container">
-    <div *ngIf="!RESPONSE_IS_LOAD() || dialogIsOpen">
-        <div class="submenu"><a class="add-button" mat-raised-button (click)="addGrade()" matTooltip="Dodaj klasę"><mat-icon>group_add</mat-icon></a>
+    <div class="grade-container" *ngIf="!RESPONSE_IS_LOAD() || DIALOG_IS_OPEN()">
+        <div class="submenu"><a class="add-button" mat-raised-button (click)="addGrade()" matTooltip="Dodaj klasę">
+            <mat-icon>group_add</mat-icon></a>
             <mat-form-field class="search" appearance="outline">
                 <mat-label></mat-label>
                 <input matInput (keyup)="applyFilter($event)" placeholder="szukaj">
                 <mat-icon matSuffix>search</mat-icon>
             </mat-form-field>
         </div>
-            <div class="subcontainer">
-                    <div *ngFor="let grade of dataSource">
-                        <mat-card class="mat-elevation-z8">
-                            <mat-card-header>
-                                <mat-card-title>Klasa {{grade.name}}</mat-card-title>
-                            </mat-card-header>
-                            <div class="container-content">
-                                <div>
-                                    <mat-card-content>
-                                        <div mat-line>uczniowie: {{grade.students.length}}</div>
-                                        <div mat-line>wpłaty: {{grade.paymentsSum}} zł.</div>
-                                        <div mat-line>wypłaty: {{grade.payOffsSum}} zł.</div>
-                                    </mat-card-content>
-                                    <div class="mat-elevation-z12 budget" mat-card-subtitle 
-                                    [ngClass]="{'budget-positive': grade.budget > 0, 'budget-zero': grade.budget == 0}">środki: {{grade.budget}} zł.</div>
-                                </div>
-                                <mat-divider class="divider"></mat-divider>
-                                <div mat-card-actions class="actions">
-                                    <button mat-icon-button color="primary" routerLink="/grade/{{grade.id}}" matTooltip="Wejdź">
-                                        <mat-icon>login</mat-icon>
-                                    </button>
-                                    <button mat-icon-button color="primary" matTooltip="Wypłać">
-                                        <mat-icon>payment</mat-icon>
-                                    </button>
-                                    <button mat-icon-button color="primary" (click)="deleteGrade(grade.id, grade.name)" matTooltip="Usuń">
-                                        <mat-icon>delete_outlined</mat-icon>
-                                    </button>
-                                </div>
-                            </div>
-                        </mat-card>
-                </div>
-            </div>
-            <mat-paginator [pageSizeOptions]="[10]"></mat-paginator>   
+        <div class="subcontainer">
+            <div *ngFor="let grade of dataSource | async">
+                <mat-card class="mat-elevation-z8">
+                    <mat-card-header>
+                        <mat-card-title>Klasa {{grade.name}}</mat-card-title>
+                    </mat-card-header>
+                    <div class="container-content">
+                        <div>
+                            <mat-card-content>
+                                <div mat-line>uczniowie: {{grade.students.length}}</div>
+                                <div mat-line>wpłaty: {{grade.paymentsSum}} zł.</div>
+                                <div mat-line>wypłaty: {{grade.payOffsSum}} zł.</div>
+                            </mat-card-content>
+                            <div class="mat-elevation-z12 budget" mat-card-subtitle 
+                            [ngClass]="{'budget-positive': grade.budget > 0, 'budget-zero': grade.budget == 0}">
+                            środki: {{grade.budget}} zł.</div>
+                        </div>
+                        <mat-divider class="divider"></mat-divider>
+                        <div mat-card-actions class="actions">
+                            <button mat-icon-button color="primary" routerLink="/grade/{{grade.id}}" matTooltip="Wejdź">
+                                <mat-icon>login</mat-icon>
+                            </button>
+                            <button mat-icon-button color="primary" matTooltip="Wypłać">
+                                <mat-icon>payment</mat-icon>
+                            </button>
+                            <button mat-icon-button color="primary" (click)="deleteGrade(grade.id, grade.name)" matTooltip="Usuń">
+                                <mat-icon>delete_outlined</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>  
+        </div> 
     </div>
-    <div class="spinner"><mat-spinner color="accent" *ngIf="RESPONSE_IS_LOAD() && !dialogIsOpen"></mat-spinner></div>
+    <mat-paginator *ngIf="!RESPONSE_IS_LOAD() || DIALOG_IS_OPEN()" [pageSizeOptions]="[10]"></mat-paginator>
+    <div class="spinner"><mat-spinner color="accent" *ngIf="RESPONSE_IS_LOAD() && !DIALOG_IS_OPEN()"></mat-spinner></div>
 </div>

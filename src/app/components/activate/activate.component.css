@@ -15,7 +15,8 @@
     
   }
 .mat-card-content {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    line-height: 4vmin;
+    font-family: Verdana, Geneva, Tahoma, serif;
     background: var(--secondary);
 }
 .header {

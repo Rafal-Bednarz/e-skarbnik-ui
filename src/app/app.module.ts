@@ -15,7 +15,6 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { MatDialogModule } from '@angular/material/dialog';
 import { RegisterInfoComponent } from './components/register-info/register-info.component';
 import { RegistrationService } from './services/registration.service';
-import { UrlService } from './services/url.service';
 import { ActivateComponent } from './components/activate/activate.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { InfoComponent } from './components/info/info.component';
@@ -26,7 +25,14 @@ import { GradeFormComponent } from './components/grade-form/grade-form.component
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { GradeComponent } from './components/grade/grade.component';
 import { StudentFormComponent } from './components/student-form/student-form.component';
-import { GradesService } from './services/grades.service';
+import { ErrorComponent } from './components/error/error.component';
+import { StudentsComponent } from './components/students/students.component';
+import { PayOffsComponent } from './components/pay-offs/pay-offs.component';
+import { PaymentsComponent } from './components/payments/payments.component';
+import { StudentComponent } from './components/student/student.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { PaymentFormComponent } from './components/payment-form/payment-form.component';
+import { ApiService } from './services/api.service';
 
 export const ROUTES = [
   {
@@ -59,7 +65,16 @@ export const ROUTES = [
   {
     path: 'grade/:id',
     component: GradeComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
+  },
+  {
+  path: 'grade/:gradeId/student/:id',
+  component: StudentComponent,
+  canActivate: [AuthGuardService]
+  },
+  {
+    path: '**',
+    component: ErrorComponent,
   }
 ]
 
@@ -77,7 +92,14 @@ export const ROUTES = [
     GradeFormComponent,
     ConfirmComponent,
     GradeComponent,
-    StudentFormComponent
+    StudentFormComponent,
+    ErrorComponent,
+    StudentsComponent,
+    PayOffsComponent,
+    PaymentsComponent,
+    StudentComponent,
+    FooterComponent,
+    PaymentFormComponent
   ],
   imports: [
     BrowserModule,
@@ -94,7 +116,7 @@ export const ROUTES = [
     {provide: HTTP_INTERCEPTORS, useClass: SessionInterceptor, multi: true},
     AuthService,
     RegistrationService,
-    UrlService,
+    ApiService,
     AuthGuardService,
     NoAuthGuardService,
   ]

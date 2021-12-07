@@ -8,7 +8,7 @@ import { ConfirmComponent } from '../components/confirm/confirm.component';
 import { Grade } from '../interfaces/grade';
 import { PayOff } from '../interfaces/payOff';
 import { Student } from '../interfaces/student';
-import { UrlService } from './url.service';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,7 @@ export class GradeService {
   constructor(private http: HttpClient, private router: Router, public dialog: MatDialog) { }
 
   addStudent(fullname: string, id: string, callback: any, error: any): void {
-    this.http.post<Student>(UrlService.getUrl() + 'students/' + id, {fullname: fullname}).subscribe(
+    this.http.post<Student>(ApiService.getUrl() + 'students/' + id, {fullname: fullname}).subscribe(
       (student: Student) => {
         this.grade.students.push(student);
         let i = 1;
@@ -32,9 +32,9 @@ export class GradeService {
           }
         );
         return callback && callback();
-      }, err => {
+      }, (err: HttpErrorResponse) => {
         this.errorMessage = err.error ? err.error.message : 'Nieoczekiwany błąd';
-        UrlService.responseIsLoadFalse();
+        ApiService.responseIsLoadFalse();
         return error && error();
       }
     );
@@ -44,11 +44,11 @@ export class GradeService {
   }
 
   refreshGrade(id: string): Observable<Grade> {
-    return this.http.get<Grade>(UrlService.getUrl() + 'grades/' + id).pipe(map(
+    return this.http.get<Grade>(ApiService.getUrl() + 'grades/' + id).pipe(map(
       (g: Grade) => {
         this.grade = g;
         let i = 1;
-        this.grade.students = g.students.map(
+        this.grade.students = g.students.sort((a, b) => a.id - b.id).map(
           (student: Student) => {
             student.nr = i++;
             return student;
@@ -80,8 +80,7 @@ export class GradeService {
   showInfo(fullname: string): Observable<boolean> {
     const dialogRef = this.dialog.open(ConfirmComponent, {
       data: '<p>Usunięcie ucznia spowoduje również bezpowrotne usunięcie jego wpłat.</p>'+
-            '<p>Czy chcesz usunąć ucznia "' + fullname + '" ?</p>',
-      width: '80%'
+            '<p>Czy chcesz usunąć ucznia "' + fullname + '" ?</p>'
     });
     return dialogRef.afterClosed();
   }
@@ -89,8 +88,8 @@ export class GradeService {
     this.showInfo(fullname).subscribe(
       (resp: boolean) => {
         if(resp) {
-          UrlService.responseIsLoadTrue();
-          this.http.delete(UrlService.getUrl() + 'students/' + this.grade.id + '/' + id + '/delete').subscribe(
+          ApiService.responseIsLoadTrue();
+          this.http.delete(ApiService.getUrl() + 'students/' + this.grade.id + '/' + id + '/delete').subscribe(
             () => {
               this.grade.students.forEach(
                 (student, index) => {
@@ -100,11 +99,12 @@ export class GradeService {
                 }
               );
               let i = 1;
-              this.grade.students.map(
+              this.grade.students.sort((a, b) => a.id - b.id).map(
                 (student: Student) => {
                   student.nr = i++;
                 }
               );
+              ApiService.responseIsLoadFalse();
               return callback && callback();
             },
             (error: HttpErrorResponse) => {

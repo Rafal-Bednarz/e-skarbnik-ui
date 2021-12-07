@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { UrlService } from 'src/app/services/url.service';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-activate',
@@ -24,15 +24,15 @@ export class ActivateComponent implements OnInit {
     )
   }
   activateUser() {
-    UrlService.responseIsLoadTrue();
-    this.http.get(UrlService.getUrl() + 'registration/' + this.username + '/' + this.registrationToken)
+    ApiService.responseIsLoadTrue();
+    this.http.get(ApiService.getUrl() + 'registration/' + this.username + '/' + this.registrationToken)
           .subscribe(() => {
           }, error => {
             this.router.navigate(['login']);
     });
-    UrlService.responseIsLoadFalse();
+    ApiService.responseIsLoadFalse();
   }
   RESPONSE_IS_LOAD(): boolean {
-    return UrlService.RESPONSE_IS_LOAD;
+    return ApiService.RESPONSE_IS_LOAD;
   }
 }

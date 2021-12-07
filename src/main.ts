@@ -2,11 +2,11 @@ import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppModule } from './app/app.module';
-import { UrlService } from './app/services/url.service';
+import { ApiService } from './app/services/api.service';
 import { environment } from './environments/environment';
 
-UrlService.setUrl('http://localhost:8080/');
-UrlService.setMainUrl('http://localhost:4200/');
+ApiService.setUrl('http://localhost:8080/');
+ApiService.setMainUrl('http://localhost:4200/');
 
 if (environment.production) {
   enableProdMode();

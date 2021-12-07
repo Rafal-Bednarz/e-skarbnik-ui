@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { UrlService } from 'src/app/services/url.service';
+import { ApiService } from 'src/app/services/api.service';
 import { UserFormLogin } from '../../interfaces/user-form-login'
 
 @Component({
@@ -27,18 +27,18 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    UrlService.responseIsLoadTrue();
+    ApiService.responseIsLoadTrue();
     this.auth.authenticate(this.user, () => {
       this.router.navigate(['/']);
     }, () => {
-      UrlService.responseIsLoadFalse();
-      this.message = 'Nieprawidłowy login lub hasło';
+      ApiService.responseIsLoadFalse();
+      this.message = this.auth.getErrorMessage();
     });
   }
   getValidateError(): string {
     return this.auth.getErrorMessage();
   }
   RESPONSE_IS_LOAD(): boolean {
-    return UrlService.RESPONSE_IS_LOAD;
+    return ApiService.RESPONSE_IS_LOAD;
   }
 }
