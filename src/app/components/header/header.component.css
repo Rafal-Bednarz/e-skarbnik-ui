@@ -1,6 +1,5 @@
 
 .navbar {
-    font-weight: lighter;
     flex: 1 1 auto;
     font-family: 'Courier New', Courier, monospace;
     color: var(--accent);

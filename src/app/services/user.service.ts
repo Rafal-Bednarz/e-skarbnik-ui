@@ -41,9 +41,11 @@ export class UserService {
     this.showInfo().subscribe(
       (resp: boolean) => {
         if(resp) {
+          ApiService.responseIsLoadTrue();
           this.http.delete(ApiService.getUrl() + 'user/delete').subscribe(
             () => {
               this.auth.clearAuthenticated();
+              ApiService.responseIsLoadFalse();
               return callback && callback();
             }
           );

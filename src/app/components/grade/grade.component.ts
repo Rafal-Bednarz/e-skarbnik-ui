@@ -1,6 +1,4 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Params, Router} from '@angular/router';
 import { Grade } from 'src/app/interfaces/grade';
 import { PayOff } from 'src/app/interfaces/payOff';
@@ -8,8 +6,8 @@ import { Student } from 'src/app/interfaces/student';
 import { GradeService } from 'src/app/services/grade.service';
 import { ApiService } from 'src/app/services/api.service';
 import { PayOffsComponent } from '../pay-offs/pay-offs.component';
-import { StudentFormComponent } from '../student-form/student-form.component';
 import { StudentsComponent } from '../students/students.component';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-grade',
@@ -27,8 +25,7 @@ export class GradeComponent implements OnInit {
   
   payOffs!: PayOff[];
 
-  constructor(private router: Router, private route: ActivatedRoute, private gradeService: GradeService,
-              public dialog: MatDialog) { }
+  constructor(private router: Router, private route: ActivatedRoute, private gradeService: GradeService) { }
 
   ngOnInit(): void {
     ApiService.responseIsLoadTrue();
@@ -37,9 +34,6 @@ export class GradeComponent implements OnInit {
         this.gradeService.refreshGrade(params['id']).subscribe(
           () => {
             this.refreshGrade();
-          },
-          (err: HttpErrorResponse) => {
-            this.router.navigate(['**']);
           }
         );
       }
@@ -47,25 +41,20 @@ export class GradeComponent implements OnInit {
   }
   refreshGrade(): void {
     this.grade = this.gradeService.getGrade();
-        if(this.grade) {
-          ApiService.responseIsLoadFalse();
-          this.students = this.grade.students;
-          this.payOffs = this.grade.payOffs;
-          if(this.studentsRef) {
-            this.studentsRef.createDataSource();
-          }
-          if(this.payOffsRef) {
-            this.payOffsRef.createDataSource();
-          }
+    if(this.grade) {
+      ApiService.responseIsLoadFalse();
+      this.students = this.grade.students;
+      this.payOffs = this.grade.payOffs;
+      if(this.studentsRef) {
+        this.studentsRef.createDataSource();
+      }
+      if(this.payOffsRef) {
+        this.payOffsRef.createDataSource();
+      }
     }
   }
-  showDialog(gradeId: string): void {
-    ApiService.dialogIsOpenTrue();
-    const dialogRef = this.dialog.open(StudentFormComponent, {
-      data: gradeId,
-      minWidth: '25%'
-    });
-    dialogRef.afterClosed().subscribe(
+  addStudent(): void {
+    this.gradeService.showAddStudentWindow(this.grade.id.toString()).subscribe(
       (resp: boolean) => {
         if(resp) {
           this.refreshGrade();
@@ -75,9 +64,6 @@ export class GradeComponent implements OnInit {
         }
       }
     );
-  }
-  addStudent(): void {
-    this.showDialog(this.grade.id.toString());
   }
   RESPONSE_IS_LOAD(): boolean {
     return ApiService.RESPONSE_IS_LOAD;
@@ -92,5 +78,17 @@ export class GradeComponent implements OnInit {
   }
   DIALOG_IS_OPEN(): boolean {
     return ApiService.DIALOG_IS_OPEN;
+  }
+  addPayOff(gradeId: number): void {
+    this.gradeService.showAddPayOffWindow(gradeId).subscribe(
+      (resp:boolean) => {
+        if(resp) {
+          this.router.navigate(['/']);
+          ApiService.dialogIsOpenFalse();
+        } else {
+          ApiService.dialogIsOpenFalse();
+        }
+      }
+    );
   }
 }

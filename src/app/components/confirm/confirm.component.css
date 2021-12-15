@@ -10,10 +10,10 @@
     margin-right: auto;
 }
 .mat-dialog-content {
-    line-height: 4vmin;
+    line-height: x-small;
     text-align: center;
     text-align-last: center;
-    font-size: 2.5vmin;
+    font-size: x-small;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .action {
@@ -26,7 +26,6 @@
 .mat-raised-button {
     padding-left: 0px !important;
     max-width: min-content;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .mat-icon {
     transform: scale(0.5);

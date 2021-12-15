@@ -5,10 +5,14 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ConfirmComponent } from '../components/confirm/confirm.component';
+import { PayOffFormComponent } from '../components/pay-off-form/pay-off-form.component';
+import { StudentFormComponent } from '../components/student-form/student-form.component';
 import { Grade } from '../interfaces/grade';
+import { Payment } from '../interfaces/payment';
 import { PayOff } from '../interfaces/payOff';
 import { Student } from '../interfaces/student';
 import { ApiService } from './api.service';
+import { GradesService } from './grades.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,18 +23,14 @@ export class GradeService {
   
   errorMessage = '';
 
-  constructor(private http: HttpClient, private router: Router, public dialog: MatDialog) { }
+  constructor(private http: HttpClient, private router: Router, public dialog: MatDialog,
+              private gradesServise: GradesService) { }
 
   addStudent(fullname: string, id: string, callback: any, error: any): void {
     this.http.post<Student>(ApiService.getUrl() + 'students/' + id, {fullname: fullname}).subscribe(
       (student: Student) => {
+        student.nr = this.grade.students.length + 1;
         this.grade.students.push(student);
-        let i = 1;
-        this.grade.students.map(
-          (student: Student) =>{
-            student.nr = i++;
-          }
-        );
         return callback && callback();
       }, (err: HttpErrorResponse) => {
         this.errorMessage = err.error ? err.error.message : 'Nieoczekiwany błąd';
@@ -63,9 +63,6 @@ export class GradeService {
         )
         return this.grade;
       },
-      (error: HttpErrorResponse) => {
-        this.router.navigate(['']);
-      }
     ));
   }
   getStudents(): Student[] {
@@ -114,5 +111,52 @@ export class GradeService {
         }
       }
     );
+  }
+  addPayOff(value: string, name:string, gradeId: string, callback: any, error: any ) {
+    ApiService.responseIsLoadTrue();
+    this.http.post<PayOff>(ApiService.getUrl() + 'payOffs/' + gradeId, {name: name, value: value})
+      .subscribe(
+        (payoff: PayOff) => {
+          payoff.nr = this.grade.payOffs.length + 1;
+          this.grade.payOffs.push(payoff);
+          this.grade.payOffsSum += payoff.value;
+          this.grade.budget -= payoff.value;
+          this.gradesServise.updateGradesWhenAddPayOffs(this.grade);
+          return callback && callback();
+        }, 
+        (err: HttpErrorResponse) => {
+          this.errorMessage = err.error ? err.error.message : 'Niespodziewany błąd';
+          ApiService.responseIsLoadFalse();
+          return error && error();
+        }
+      );
+  };
+  showAddPayOffWindow(gradeId: number): Observable<boolean> {
+    ApiService.dialogIsOpenTrue();
+    const dialogRef = this.dialog.open(PayOffFormComponent, 
+      {
+        data: gradeId.toString(),
+        minWidth: '25%'
+      });
+      return dialogRef.afterClosed();
+  }
+  showAddStudentWindow(gradeId: string): Observable<boolean> {
+    ApiService.dialogIsOpenTrue();
+    const dialogRef = this.dialog.open(StudentFormComponent, {
+      data: gradeId,
+      minWidth: '25%'
+    });
+    return dialogRef.afterClosed();
+  }
+  updateGradeWhenAddPayment(studentId: number, payment: Payment): void {
+    this.grade.paymentsSum += payment.value;
+    this.grade.budget += payment.value;
+    this.grade.students.map((student) => {
+      if(studentId === student.id) {
+        payment.nr = student.payments.length + 1;
+        student.payments.push(payment);
+        student.paymentsSum += payment.value;
+      }
+    });
   }
 }

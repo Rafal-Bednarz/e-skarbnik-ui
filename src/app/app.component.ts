@@ -1,7 +1,9 @@
 
-import { Component, DoCheck, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, DoCheck, OnDestroy, OnInit } from '@angular/core';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { Router } from '@angular/router';
 import { User } from '../app/interfaces/user';
+import { PolicyComponent } from './components/policy/policy.component';
 import { AuthService } from './services/auth.service';
 import { UserService } from './services/user.service';
 
@@ -10,15 +12,21 @@ import { UserService } from './services/user.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
 
   user!: User;
 
-  constructor(private router: Router, private userService: UserService, private auth: AuthService) {
+  constructor(private router: Router, private userService: UserService, private auth: AuthService,
+              private _bottomSheet: MatBottomSheet) {
   }
   
   ngOnInit(): void {
     this.getUser();
+  }
+  ngAfterViewInit(): void {
+    if(!localStorage.getItem('policyAccepted')) {
+    setTimeout(() => this.openBottomSheet(), 1000);
+    }
   }
   getUser(): void {
     if(this.auth.getAuthenticated()) {
@@ -27,6 +35,12 @@ export class AppComponent implements OnInit {
   }
   deleteUser(): void {
     this.userService.deleteUser(() => this.router.navigate(['login']));
+  }
+  openBottomSheet(): void {
+    const bottomSheetRef = this._bottomSheet.open(PolicyComponent, 
+      {
+        disableClose: true,
+      });
   }
 }
 

@@ -8,7 +8,7 @@
     width: 100%;
 }
 .mat-raised-button {
-    margin-right: 1em;
+    margin-left: 2%;
     background: var(--secondary);
     color: var(--accent);
 
@@ -19,8 +19,8 @@
 }
 ::ng-deep .mat-tab-label {
     font-family: Verdana, Geneva, Tahoma, serif;
-    font-size: 2.5vmin;
-    width: 100%;
+    font-size: 1.3vmax;
+    width: 50%;
 }
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
     background: var(--accent);
@@ -30,6 +30,7 @@
     width: 96%;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 2%;
 }
 .label-icon {
     margin-right: 5px;

@@ -11,15 +11,6 @@
 .mat-dialog-content {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-.mat-dialog-title {
-    font-size: 3vmin;
-    width: 100%;
-    text-align: center;
-    color: var(--accent);
-    margin-left: auto;
-    margin-right: auto;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
 .mat-form-field {
    max-width: 100%;
    min-width: 70%;

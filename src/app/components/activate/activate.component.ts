@@ -16,6 +16,7 @@ export class ActivateComponent implements OnInit {
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
+    ApiService.responseIsLoadTrue();
     let resp = this.route.params.subscribe((params: Params) => {
       this.username = params['username'];
       this.registrationToken = params['registrationToken'];
@@ -24,13 +25,13 @@ export class ActivateComponent implements OnInit {
     )
   }
   activateUser() {
-    ApiService.responseIsLoadTrue();
     this.http.get(ApiService.getUrl() + 'registration/' + this.username + '/' + this.registrationToken)
           .subscribe(() => {
+            ApiService.responseIsLoadFalse();
           }, error => {
-            this.router.navigate(['login']);
+            this.router.navigate(['**']);
+            ApiService.responseIsLoadFalse();
     });
-    ApiService.responseIsLoadFalse();
   }
   RESPONSE_IS_LOAD(): boolean {
     return ApiService.RESPONSE_IS_LOAD;

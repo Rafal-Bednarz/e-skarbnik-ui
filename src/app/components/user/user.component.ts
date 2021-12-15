@@ -10,6 +10,8 @@ import { User } from 'src/app/interfaces/user';
 import { GradesService } from 'src/app/services/grades.service';
 import { ApiService } from 'src/app/services/api.service';
 import { GradeFormComponent } from '../grade-form/grade-form.component';
+import { GradeService } from 'src/app/services/grade.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -27,7 +29,8 @@ export class UserComponent implements OnInit, OnDestroy{
 
   grades: Grade[] = [];
 
-  constructor(private gradesService: GradesService, public dialog: MatDialog) {
+  constructor(private gradesService: GradesService, public dialog: MatDialog, 
+              private gradeService: GradeService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -99,5 +102,20 @@ export class UserComponent implements OnInit, OnDestroy{
   }
   DIALOG_IS_OPEN(): boolean {
     return ApiService.DIALOG_IS_OPEN;
+  }
+  addPayOff(gradeId: number): void {
+    if(!this.gradeService.getGrade() || this.gradeService.getGrade().id !== gradeId) {
+    this.gradeService.refreshGrade(gradeId.toString()).subscribe();
+    }
+    this.gradeService.showAddPayOffWindow(gradeId).subscribe(
+      (resp: boolean)=> {
+        if(resp){
+          this.refreshGrades();
+          ApiService.dialogIsOpenFalse();
+        } else {
+          ApiService.dialogIsOpenFalse();
+        }
+      }
+    );
   }
 }

@@ -5,6 +5,7 @@
     background: var(--primary);
 }
 .add-button {
+    margin-right: 2%;
     color: var(--accent);
     background: var(--secondary);
 }
@@ -44,11 +45,11 @@
     background: var(--accent);
     width: 170px;
 }
+ 
 .divider {
-    float: left;
-    width: 70%;
-    margin-left: 70px;
-    margin-right: auto;
+    margin-left: 100px;
+    width: 100px;
+    margin-bottom: 30px;
     background-color: var(--primary);
     height: 0.3px;
     transform: rotate(90deg) translate(70px);
@@ -60,33 +61,39 @@
     color: var(--primary);
     width: 100%;
     font-size: medium;
+    text-shadow: 0.05rem 0.05rem  black;
 }
 .budget {
-    width: 60px;
-    border: var(--primary) solid 1px;
+    margin-top: 10px;
+    min-width: 70px;
+    max-width: max-content;
     border-radius: 5px;
     padding: 10px 10px 10px 10px;
     background: var(--accent);
+    font-size: x-small;
 }
 .actions {
     display: flex;
     flex-direction: column;  
 }
-.budget-zero {
-    color: var(--warn);
-    border: var(--warn) solid 1.2px;
-}
-.budget-positive {
-    color: rgb(28, 134, 51);
-    border: rgb(28, 134, 51) solid 1.2px;
+.line {
+    min-width: max-content;
+    font-size: x-small;
 }
 .container-content {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: stretch;
 }
-.mat-paginator {
+.paginator-container {
+    width: 100%;
     position: absolute;
     bottom: 0;
+}
+.mat-paginator {
+    width: 96%;
+    margin-right: auto;
+    margin-left: auto;
 }
 

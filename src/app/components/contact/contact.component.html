@@ -1,11 +1,10 @@
 <div class="container">
     <mat-card class="mainCard" *ngIf="!RESPONSE_IS_LOAD()">
-        <mat-card-title class="title">Napisz do nas</mat-card-title>
         <mat-card class="subCard">
         <div>
             <div>
                 <mat-form-field appearance="outline" class="subject">
-                    <mat-label>Wprowadź temat</mat-label>
+                    <mat-label>Podaj temat</mat-label>
                     <input matInput type="text" placeholder="temat" 
                                 required [(ngModel)]="subject">
                 </mat-form-field>

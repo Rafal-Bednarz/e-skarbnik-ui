@@ -33,6 +33,8 @@ import { StudentComponent } from './components/student/student.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PaymentFormComponent } from './components/payment-form/payment-form.component';
 import { ApiService } from './services/api.service';
+import { PayOffFormComponent } from './components/pay-off-form/pay-off-form.component';
+import { PolicyComponent } from './components/policy/policy.component';
 
 export const ROUTES = [
   {
@@ -99,7 +101,9 @@ export const ROUTES = [
     PaymentsComponent,
     StudentComponent,
     FooterComponent,
-    PaymentFormComponent
+    PaymentFormComponent,
+    PayOffFormComponent,
+    PolicyComponent
   ],
   imports: [
     BrowserModule,
