@@ -27,7 +27,7 @@ export class GradeService {
               private gradesServise: GradesService) { }
 
   addStudent(fullname: string, id: string, callback: any, error: any): void {
-    this.http.post<Student>(ApiService.getUrl() + 'students/' + id, {fullname: fullname}).subscribe(
+    this.http.post<Student>(ApiService.getApiUrl() + 'students/' + id, {fullname: fullname}).subscribe(
       (student: Student) => {
         student.nr = this.grade.students.length + 1;
         this.grade.students.push(student);
@@ -44,7 +44,7 @@ export class GradeService {
   }
 
   refreshGrade(id: string): Observable<Grade> {
-    return this.http.get<Grade>(ApiService.getUrl() + 'grades/' + id).pipe(map(
+    return this.http.get<Grade>(ApiService.getApiUrl() + 'grades/' + id).pipe(map(
       (g: Grade) => {
         this.grade = g;
         let i = 1;
@@ -86,7 +86,7 @@ export class GradeService {
       (resp: boolean) => {
         if(resp) {
           ApiService.responseIsLoadTrue();
-          this.http.delete(ApiService.getUrl() + 'students/' + this.grade.id + '/' + id + '/delete').subscribe(
+          this.http.delete(ApiService.getApiUrl() + 'students/' + this.grade.id + '/' + id + '/delete').subscribe(
             () => {
               this.grade.students.forEach(
                 (student, index) => {
@@ -114,7 +114,7 @@ export class GradeService {
   }
   addPayOff(value: string, name:string, gradeId: string, callback: any, error: any ) {
     ApiService.responseIsLoadTrue();
-    this.http.post<PayOff>(ApiService.getUrl() + 'payOffs/' + gradeId, {name: name, value: value})
+    this.http.post<PayOff>(ApiService.getApiUrl() + 'payOffs/' + gradeId, {name: name, value: value})
       .subscribe(
         (payoff: PayOff) => {
           payoff.nr = this.grade.payOffs.length + 1;

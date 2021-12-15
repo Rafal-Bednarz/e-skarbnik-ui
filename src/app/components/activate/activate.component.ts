@@ -25,7 +25,7 @@ export class ActivateComponent implements OnInit {
     )
   }
   activateUser() {
-    this.http.get(ApiService.getUrl() + 'registration/' + this.username + '/' + this.registrationToken)
+    this.http.get(ApiService.getApiUrl() + 'registration/' + this.username + '/' + this.registrationToken)
           .subscribe(() => {
             ApiService.responseIsLoadFalse();
           }, error => {

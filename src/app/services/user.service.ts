@@ -17,7 +17,7 @@ export class UserService {
   constructor(private http: HttpClient, private auth: AuthService, public dialog: MatDialog) { }
 
   refreshUser(callback: any): void {
-    const resp  = this.http.get<User>(ApiService.getUrl() + 'user').subscribe(
+    const resp  = this.http.get<User>(ApiService.getApiUrl() + 'user').subscribe(
       (user: User) => {
         this.user = user;
         return callback && callback();
@@ -42,7 +42,7 @@ export class UserService {
       (resp: boolean) => {
         if(resp) {
           ApiService.responseIsLoadTrue();
-          this.http.delete(ApiService.getUrl() + 'user/delete').subscribe(
+          this.http.delete(ApiService.getApiUrl() + 'user/delete').subscribe(
             () => {
               this.auth.clearAuthenticated();
               ApiService.responseIsLoadFalse();

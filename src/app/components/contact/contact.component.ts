@@ -33,7 +33,7 @@ export class ContactComponent implements OnInit {
   send(): void {
     ApiService.responseIsLoadTrue();
 
-    this.http.post(ApiService.getUrl() + 'contact', this.setMessage()).subscribe(
+    this.http.post(ApiService.getApiUrl() + 'contact', this.setMessage()).subscribe(
       () => {
         ApiService.responseIsLoadFalse();
         this.showInfo();

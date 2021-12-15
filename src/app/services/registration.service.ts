@@ -13,12 +13,13 @@ export class RegistrationService {
   
   constructor(private http: HttpClient) { }
 
-  registerUser(user: UserFormRegistration, repeat: string, callback: any, error: any) {
+  registerUser(user: UserFormRegistration, repeat: string, callback:
+   any, error: any) {
     if(user.password !== repeat) {
       this.message = 'Hasła nie są jednakowe';
       return error && error();
     } else {
-      this.http.post<User>(ApiService.getUrl() + 'registration', user, {}).subscribe(
+      this.http.post<User>(ApiService.getApiUrl() + 'registration', user, {}).subscribe(
         (user: User) => {
           return callback && callback();
         },
