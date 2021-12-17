@@ -6,7 +6,6 @@ import { ApiService } from './app/services/api.service';
 import { environment } from './environments/environment';
 
 ApiService.setApiUrl('https://eskarbnik-app.herokuapp.com/');
-ApiService.setMainUrl('https://rafal-bednarz.github.io/e-skarbnik-ui/');
 
 if (environment.production) {
   enableProdMode();

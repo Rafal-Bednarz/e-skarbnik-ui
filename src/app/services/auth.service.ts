@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse, HttpHandler, HttpHeaders, HttpRequest, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -26,13 +26,11 @@ export class AuthService {
               }: {});
             const resp = this.http.get<User>(ApiService.getApiUrl() + 'user', {headers: headers}).subscribe(
               () => {
-                this.setAuthenticated('OK');
-                this.refreshSession();
+              return callback && callback();
               });    
           } else {
             this.clearAuthenticated();
           }
-          return callback && callback();
         },
         (err: HttpErrorResponse) => {
           if(err.error && err.status === 400) {
@@ -62,9 +60,5 @@ export class AuthService {
   }
   public getUser(): Observable<User> {
       return this.http.get<User>(ApiService.getApiUrl() + 'user');
-  }
-  refreshSession(): void {
-    
-    window.location.assign(ApiService.getMainUrl());
   }
 }

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { ApiService } from 'src/app/services/api.service';
 import { UserFormLogin } from '../../interfaces/user-form-login'
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
     username: "",
     password: ""
   }
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService, private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
     ApiService.responseIsLoadFalse();
@@ -30,8 +31,11 @@ export class LoginComponent implements OnInit {
   login() {
     ApiService.responseIsLoadTrue();
     this.auth.authenticate(this.user, () => {
-      this.router.navigate(['/']);
-    }, () => {
+      
+        this.auth.setAuthenticated('OK');
+        this.router.navigate(['/']);
+    }
+    , () => {
       ApiService.responseIsLoadFalse();
       this.message = this.auth.getErrorMessage();
     });
