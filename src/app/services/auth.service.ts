@@ -34,11 +34,9 @@ export class AuthService {
         },
         (err: HttpErrorResponse) => {
           if(err.error && err.status === 400) {
-            if(err.error.message.toLowerCase() === 'konto nieaktywne') {
+            
             this.errorMessage = err.error.message;
-            } else {
-              this.errorMessage = 'Nieprawidłowy login lub hasło';
-            }
+            
             return error && error();
           } else {
             this.router.navigate(['**']);
