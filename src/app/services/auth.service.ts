@@ -2,9 +2,11 @@ import { HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http'
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Jwttoken } from '../interfaces/jwttoken';
 import { User } from '../interfaces/user';
 import { UserFormLogin } from '../interfaces/user-form-login';
 import { ApiService } from './api.service';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,20 +19,10 @@ export class AuthService {
 
   authenticate(credentials: UserFormLogin, callback: any, error: any): void {
     
-      this.http.post<Boolean>(ApiService.getApiUrl() + 'login', credentials, {}).subscribe(
-        (resp: Boolean) => {
-          if(resp) {
-            const headers = new HttpHeaders(credentials ? 
-              {
-                authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password)
-              }: {});
-            const resp = this.http.get<User>(ApiService.getApiUrl() + 'user', {headers: headers}).subscribe(
-              () => {
-              return callback && callback();
-              });    
-          } else {
-            this.clearAuthenticated();
-          }
+      this.http.post<Jwttoken>(ApiService.getApiUrl() + 'login', credentials, {}).subscribe(
+        (resp: Jwttoken) => {
+          this.setAuthenticated(credentials.username, resp.token);
+          return callback && callback();
         },
         (err: HttpErrorResponse) => {
           if(err.error && err.status === 400) {
@@ -44,14 +36,20 @@ export class AuthService {
         }
       );
   }
-  public setAuthenticated(value: string) {
-    window.sessionStorage.setItem('authenticated', value);
+  public setAuthenticated(username: string, token: string) {
+    window.sessionStorage.setItem('username', username);
+    window.sessionStorage.setItem('token', 'Bearer ' + token)
   }
-  public getAuthenticated() {
-    return window.sessionStorage.getItem('authenticated');
+  public getAuthenticated(): boolean {
+    return window.sessionStorage.getItem('username') && window.sessionStorage.getItem('token') ? true : false;
   }
-  public clearAuthenticated() {
-    window.sessionStorage.removeItem('authenticated');
+  public getToken(): string {
+    const token = window.sessionStorage.getItem('token') ? window.sessionStorage.getItem('token') : '';
+    return token ? token : '';
+  }
+  public clearAuthenticated(): void {
+    window.sessionStorage.removeItem('username');
+    window.sessionStorage.removeItem('token');
   }
   public getErrorMessage(): string {
     return this.errorMessage;

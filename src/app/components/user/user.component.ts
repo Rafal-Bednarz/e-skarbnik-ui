@@ -6,12 +6,11 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { Grade } from 'src/app/interfaces/grade';
-import { User } from 'src/app/interfaces/user';
-import { GradesService } from 'src/app/services/grades.service';
 import { ApiService } from 'src/app/services/api.service';
 import { GradeFormComponent } from '../grade-form/grade-form.component';
 import { GradeService } from 'src/app/services/grade.service';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user',
@@ -25,16 +24,18 @@ export class UserComponent implements OnInit, OnDestroy{
   dataSourceStream!: MatTableDataSource<Grade>;
   dataSource!: Observable<Grade[]>;
 
-  user!: User;
-
   grades: Grade[] = [];
 
-  constructor(private gradesService: GradesService, public dialog: MatDialog, 
+  constructor(private userService: UserService, public dialog: MatDialog, 
               private gradeService: GradeService, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.getGrades();
+      this.userService.refreshGrades().subscribe(
+        () => {
+          this.refreshGrades();
+        }
+      );
   }
 
   applyFilter(event: Event): void {
@@ -46,17 +47,9 @@ export class UserComponent implements OnInit, OnDestroy{
     this.dataSource = this.dataSourceStream.connect();
   }
   refreshGrades(): void {
-    this.grades = this.gradesService.getGrades();
+    this.grades = this.userService.getGrades();
     this.createDataSource();
     ApiService.responseIsLoadFalse();                                                                                                                                                           
-  }
-  getGrades(): void {
-    ApiService.responseIsLoadTrue();
-    this.gradesService.refreshGrades().subscribe(
-      () => {
-        this.refreshGrades();
-      }
-    );
   }
   addGrade(): void {
     ApiService.dialogIsOpenTrue();
@@ -90,7 +83,7 @@ export class UserComponent implements OnInit, OnDestroy{
   }
 
   deleteGrade(id: number, name: string): void {
-    this.gradesService.deleteGrade(id.toString(), name, ()=> this.refreshGrades());
+    this.userService.deleteGrade(id.toString(), name, ()=> this.refreshGrades());
   }
   RESPONSE_IS_LOAD(): boolean {
     return ApiService.RESPONSE_IS_LOAD;

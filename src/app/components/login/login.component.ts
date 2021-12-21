@@ -30,12 +30,14 @@ export class LoginComponent implements OnInit {
 
   login() {
     ApiService.responseIsLoadTrue();
-    this.auth.authenticate(this.user, () => {
-      
-        this.auth.setAuthenticated('OK');
-        this.router.navigate(['/']);
-    }
-    , () => {
+    this.auth.authenticate(this.user,
+      () => {
+        this.userService.refreshUser(
+          () => 
+          this.router.navigate(['/'])
+        );
+      },
+      () => {
       ApiService.responseIsLoadFalse();
       this.message = this.auth.getErrorMessage();
     });

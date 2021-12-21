@@ -1,7 +1,7 @@
 
-import { AfterViewInit, Component, DoCheck, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, DoCheck, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { Router } from '@angular/router';
+import { Router, RouterEvent } from '@angular/router';
 import { User } from '../app/interfaces/user';
 import { PolicyComponent } from './components/policy/policy.component';
 import { AuthService } from './services/auth.service';
@@ -24,7 +24,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.getUser();
   }
   ngAfterViewInit(): void {
-    if(!localStorage.getItem('policyAccepted')) {
+    if(!window.sessionStorage.getItem('policyAccepted')) {
     setTimeout(() => this.openBottomSheet(), 1000);
     }
   }
@@ -41,6 +41,11 @@ export class AppComponent implements OnInit, AfterViewInit {
       {
         disableClose: true,
       });
+  }
+  refreshUser(): void {
+    if(this.auth.getAuthenticated() && this.user !== this.userService.getUser()) {
+      this.user = this.userService.getUser();
+    }
   }
 }
 

@@ -10,15 +10,13 @@ export class SessionInterceptor implements HttpInterceptor {
     
     constructor(private auth: AuthService, private router: Router) {}
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
-        const cloneReg = req.clone({
-            headers: req.headers.set('X-Requested-With', 'XMLHttpRequest')
-                                .set('Content-Type', 'application/json'),
-                                
-            withCredentials: true,
-            
-        });
-        return next.handle(cloneReg).pipe(
+        let cloneReq = req.clone();
+        if(this.auth.getAuthenticated()) {
+            cloneReq = req.clone({
+                setHeaders: {Authorization: this.auth.getToken()}
+            });
+        }
+        return next.handle(cloneReq).pipe(
             catchError(
                 (resp) => {
                         if(resp.status === 401) {

@@ -12,7 +12,7 @@ import { Payment } from '../interfaces/payment';
 import { PayOff } from '../interfaces/payOff';
 import { Student } from '../interfaces/student';
 import { ApiService } from './api.service';
-import { GradesService } from './grades.service';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +24,7 @@ export class GradeService {
   errorMessage = '';
 
   constructor(private http: HttpClient, private router: Router, public dialog: MatDialog,
-              private gradesServise: GradesService) { }
+              private userService: UserService) { }
 
   addStudent(fullname: string, id: string, callback: any, error: any): void {
     this.http.post<Student>(ApiService.getApiUrl() + 'students/' + id, {fullname: fullname}).subscribe(
@@ -121,7 +121,7 @@ export class GradeService {
           this.grade.payOffs.push(payoff);
           this.grade.payOffsSum += payoff.value;
           this.grade.budget -= payoff.value;
-          this.gradesServise.updateGradesWhenAddPayOffs(this.grade);
+          this.userService.updateGradesWhenAddPayOffs(this.grade);
           return callback && callback();
         }, 
         (err: HttpErrorResponse) => {
