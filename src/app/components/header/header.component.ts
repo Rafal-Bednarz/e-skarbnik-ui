@@ -21,7 +21,6 @@ export class HeaderComponent implements OnInit {
   }
   logout(): void {
     this.authService.clearAuthenticated();
-    this.http.post(ApiService.getApiUrl() + 'logout', {}, {}).subscribe();
   }
   authenticated(): boolean {
     return this.authService.getAuthenticated();

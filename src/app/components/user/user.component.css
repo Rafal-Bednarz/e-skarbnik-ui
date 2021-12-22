@@ -16,9 +16,6 @@
 ::ng-deep .menu {
     background: var(--secondary);
 }
-.mat-icon-button {
-    width: 50%;
-}
 .mat-icon-button :hover {
     transform: scale(1.1);
 }
@@ -43,23 +40,19 @@
     margin-right: 30px;
     font-family: Verdana, Geneva, Tahoma, serif;
     background: var(--accent);
-    width: 170px;
+    width: 200px;
 }
  
 .divider {
-    margin-left: 100px;
-    width: 100px;
-    margin-bottom: 30px;
+    position: static;
+    width: 1px;
+    margin-top: 10px;
     background-color: var(--primary);
-    height: 0.3px;
-    transform: rotate(90deg) translate(70px);
-}
-.mat-card-header {
-    width: 100%;
+    height: 100px;
+    
 }
 .mat-card-title {
     color: var(--primary);
-    width: 100%;
     font-size: medium;
     text-shadow: 0.05rem 0.05rem  black;
 }
@@ -72,19 +65,23 @@
     background: var(--accent);
     font-size: x-small;
 }
-.actions {
+.actions {    
     display: flex;
     flex-direction: column;  
 }
 .line {
-    min-width: max-content;
-    font-size: x-small;
+    width: 150px;
+}
+.line div {
+    font-family: Verdana, Geneva, Tahoma, serif;
+    font-size: small;
 }
 .container-content {
+    max-width: 200px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: stretch;
+    align-items: initial;
 }
 .paginator-container {
     width: 100%;

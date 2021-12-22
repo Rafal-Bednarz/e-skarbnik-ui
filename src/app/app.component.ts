@@ -24,7 +24,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.getUser();
   }
   ngAfterViewInit(): void {
-    if(!window.sessionStorage.getItem('policyAccepted')) {
+    if(!this.auth.isPolicyAccepted()) {
     setTimeout(() => this.openBottomSheet(), 1000);
     }
   }

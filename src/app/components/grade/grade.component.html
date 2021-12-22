@@ -2,7 +2,7 @@
     <div *ngIf="!RESPONSE_IS_LOAD() || DIALOG_IS_OPEN()" class="view-container">
         <div class="submenu">
             <div class="value-card mat-elevation-z8" mat-card>
-                <div class="name-card mat-elevation-z8">Klasa {{grade.name}}</div>
+                <div class="name-card mat-elevation-z8">{{grade.name}}</div>
                 <div class="budget-card mat-elevation-z8" [ngClass]="{'budget-zero': grade.budget == 0, 'budget-positive': grade.budget > 0}">
                     <mat-icon class="budget-icon" fontSet="material-icons-outlined">savings</mat-icon> {{grade.budget}} zł.
                 </div>

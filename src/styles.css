@@ -61,7 +61,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     min-height: min-content;
 }
 .search {
-    max-width: 25%;
+    max-width: 30%;
 }
 .mat-form-field {
     font-size: x-small;
@@ -80,6 +80,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .name-card {
     display: flex;
     align-items: center;
+    min-width: 2em;
     width: max-content;
     padding: 0.4em  0.4em  0.4em  0.4em;
     background: var(--accent);

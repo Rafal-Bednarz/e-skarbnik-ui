@@ -28,7 +28,7 @@ $accent: (
    Dark: #fff
   ));
   $warn: (
-    Main: #B71C1C,
+    Main: var(--warn),
     Light: #ffc453,
     Dark: #be6500,
     contrast: (
@@ -61,9 +61,9 @@ $eskarbnik-ui-theme: mat.define-light-theme((
 @include mat.all-component-themes($eskarbnik-ui-theme);
 
 :root {
---accent: rgb(233, 211, 236);
---primary: #292c57;
---secondary: #45469c;
---warn: #B71C1C;
+--accent: rgb(255, 255, 255);
+--primary: #5660eb;
+--secondary: #7940bb;
+--warn: #972727;
 --third: rgb(166, 164, 255);
 }

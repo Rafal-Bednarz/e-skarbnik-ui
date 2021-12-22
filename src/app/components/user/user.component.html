@@ -13,7 +13,7 @@
             <div *ngFor="let grade of dataSource | async">
                 <mat-card class="mat-elevation-z8">
                     <mat-card-header>
-                        <mat-card-title>Klasa {{grade.name}}</mat-card-title>
+                        <mat-card-title>{{grade.name}}</mat-card-title>
                     </mat-card-header>
                     <div class="container-content">
                         <div class="line">
@@ -41,6 +41,6 @@
             </div>  
         </div> 
     </div>
-    <div class="paginator-container"  *ngIf="!RESPONSE_IS_LOAD() || DIALOG_IS_OPEN()"><mat-paginator [pageSizeOptions]="[10]"></mat-paginator></div>
+    <div class="paginator-container"  *ngIf="!RESPONSE_IS_LOAD() || DIALOG_IS_OPEN()"><mat-paginator class="mat-elevation-z8" [pageSizeOptions]="[10]"></mat-paginator></div>
     <div class="spinner"><mat-spinner color="accent" *ngIf="RESPONSE_IS_LOAD() && !DIALOG_IS_OPEN()"></mat-spinner></div>
 </div>

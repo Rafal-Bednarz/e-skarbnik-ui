@@ -31,6 +31,7 @@ export class UserComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit(): void {
+    ApiService.responseIsLoadTrue();
       this.userService.refreshGrades().subscribe(
         () => {
           this.refreshGrades();

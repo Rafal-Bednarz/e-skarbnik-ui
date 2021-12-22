@@ -37,24 +37,29 @@ export class AuthService {
       );
   }
   public setAuthenticated(username: string, token: string) {
-    window.sessionStorage.setItem('username', username);
-    window.sessionStorage.setItem('token', 'Bearer ' + token)
+    localStorage.setItem('username', username);
+    localStorage.setItem('token', 'Bearer ' + token)
   }
   public getAuthenticated(): boolean {
-    return window.sessionStorage.getItem('username') && window.sessionStorage.getItem('token') ? true : false;
+    return localStorage.getItem('username') && localStorage.getItem('token') ? true : false;
   }
   public getToken(): string {
-    const token = window.sessionStorage.getItem('token') ? window.sessionStorage.getItem('token') : '';
+    const token = localStorage.getItem('token') ? localStorage.getItem('token') : '';
     return token ? token : '';
   }
   public clearAuthenticated(): void {
-    window.sessionStorage.removeItem('username');
-    window.sessionStorage.removeItem('token');
+    localStorage.removeItem('username');
+    localStorage.removeItem('token');
+    localStorage.removeItem('policyAccepted');
+
   }
   public getErrorMessage(): string {
     return this.errorMessage;
   }
   public getUser(): Observable<User> {
       return this.http.get<User>(ApiService.getApiUrl() + 'user');
+  }
+  public isPolicyAccepted() {
+    return localStorage.getItem('policyAccepted');
   }
 }
